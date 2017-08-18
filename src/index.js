@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createBrowserHistory } from 'history'
 import HomePage from './components/HomePage';
 import MealPlanner from './components/MealPlanner';
+import './style.css';
 
 
 
