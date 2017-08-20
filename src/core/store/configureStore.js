@@ -1,33 +1,17 @@
 import { createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from '../reducers';
-// import thunk from 'redux-thunk';
-// import createLogger from 'redux-logger';
-// import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-
-const logger = (store) => (next) => (action) => {
-    console.log("Store Changed", action);
-    next(action);
-}
-const error = (store) => (next) => (action) => {
-    try{
-        next(action)
-    }catch(e){
-        console.log("error",e);
-    }
-}
-
-const middleware = applyMiddleware(logger,error);
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 const configureStore = (initialState) => {
     return createStore(
         rootReducer,
         initialState,
-        middleware
-        // compose(
-            // applyMiddleware(logger, error)
+        compose(
+            applyMiddleware(logger,thunk)
             // applyMiddleware(thunk, reduxImmutableStateInvariant(), logger),
-        //     window.devToolsExtension ? window.devToolsExtension() : f => f
-        // )
+            // window.devToolsExtension ? window.devToolsExtension() : f => f
+        )
     );
 };
 

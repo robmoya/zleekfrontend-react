@@ -1,4 +1,9 @@
 export default {
-    home: {}
-    mealPlanner:{}
+    home: {},
+    mealPlanner:{
+        fetching:false,
+        fetched: false,
+        error:null,
+        myMealPlan: {}
+    }
 }
