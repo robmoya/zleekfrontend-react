@@ -1,6 +1,34 @@
-const mealPlanReducer = (state= [], action) => {
+import initialState from './initialState';
+import * as types from '../actions/actionTypes';
+
+const mealPlanReducer = (state= initialState.mealPlanner, action) => {
     switch(action.type){
-        case "CREATE_MEAL_PLAN": {
+        case types.FETCH_MEAL_PLAN: {
+            state = {...state,
+                fetching: true,
+                myMealPlan: {
+                    numberOfDays: action.myMealPlan.mealsPerDay,
+                    recipesPerMeal: action.myMealPlan.recipesPerMeal,
+                }
+            }
+            break;
+        }
+        case types.FETCH_MEAL_PLAN_ERROR: {
+            state = {...state,
+                fetching: false,
+                error: action.payload
+            }
+            break;
+        }
+        case types.RECEIVE_MEAL_PLAN: {
+            state = {...state,
+                fetched: true,
+                fetching: false,
+                myMealPlan: action.payload
+            }
+            break;
+        }
+        case types.CREATE_MEAL_PLAN: {
             state = {...state,
                 buildNewPlan: {
                     numberOfDays: action.mealsPerDay,
@@ -9,7 +37,7 @@ const mealPlanReducer = (state= [], action) => {
             }
             break;
         }
-        case "SUBSTITUTE_RECIPE" : {
+        case types.SUBSTITUTE_RECIPE : {
             state = {...state,
                 replaceRecipe: {
                     recipeId: action.recipeToReplace
@@ -17,6 +45,7 @@ const mealPlanReducer = (state= [], action) => {
             }
             break;
         }
+        default: break
     }
     return state
 }

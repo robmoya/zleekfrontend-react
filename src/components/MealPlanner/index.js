@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import { fetchMealPlan } from '../../core/actions/mealPlannerActions';
+import PropTypes from 'prop-types';
 
-// import { Link } from 'react-router';
-import Meal from '../common/Meal';
-import ZleekApi from '../../api/zleekApi.js';
+
+// import Meal from '../common/Meal';
+// import ZleekApi from '../../api/zleekApi.js';
 // import EditMealForm from './EditMealForm';
-import sampleApiCall from '../../api/sampleApiCall';
+// import sampleApiCall from '../../api/sampleApiCall';
 
 const createReactClass = require('create-react-class');
-
-
 
 const MealPlanner = createReactClass({
     // getInitialState: function(){
@@ -17,6 +18,9 @@ const MealPlanner = createReactClass({
     //         nutrients: []
     //     }
     // },
+    componentWillMount: function(){
+        this.props.onMount();
+    },
     componentDidMount: function(){
         // ZleekApi.getMealPlan(sampleApiCall).then((data) => {
         //     // this.setState({
@@ -28,12 +32,19 @@ const MealPlanner = createReactClass({
         //     console.log("Api call error");
         // })
     },
+    renderLoading(){
+        if (this.props.mealplanner.fetching) {
+            return <div>Fetching</div>
+        }
+    },
     render: function() {
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12">
                         <h1>My Meal Planner</h1>
+                        {this.renderLoading()}
+                        {this.props.mealplanner.myMealPlan.numberOfDays}
                         {/*<EditMealForm handleMealForm={this.handleMealForm} nutrients={nutrients}/>*/}
                     </div>
                 </div>
@@ -64,5 +75,28 @@ const MealPlanner = createReactClass({
         );
     }
 })
+//
+MealPlanner.propTypes = {
+    // myMealPlan: PropTypes.object.isRequired,
+    onMount: PropTypes.func
+};
 
-export default MealPlanner;
+const mapStateToProps = (state) => {
+    return {
+        mealplanner: {
+            fetching: state.mealPlanner.fetching,
+            myMealPlan: state.mealPlanner.myMealPlan
+        }
+    };
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onMount: () => {
+            dispatch(fetchMealPlan({"mealsPerDay": 2, "recipesPerMeal": 3}));
+        }
+    };
+};
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(MealPlanner);
