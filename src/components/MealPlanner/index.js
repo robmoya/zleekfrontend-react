@@ -11,22 +11,22 @@ const createReactClass = require('create-react-class');
 
 
 const MealPlanner = createReactClass({
-    getInitialState: function(){
-        return {
-            meals: [],
-            nutrients: []
-        }
-    },
+    // getInitialState: function(){
+    //     return {
+    //         meals: [],
+    //         nutrients: []
+    //     }
+    // },
     componentDidMount: function(){
-        ZleekApi.getMealPlan(sampleApiCall).then((data) => {
-            // this.setState({
-            //     meals: data.meals,
-            //     nutrients: data.nutrients
-            // });
-            console.log(data);
-        }).catch((error) => {
-            console.log("Api call error");
-        })
+        // ZleekApi.getMealPlan(sampleApiCall).then((data) => {
+        //     // this.setState({
+        //     //     meals: data.meals,
+        //     //     nutrients: data.nutrients
+        //     // });
+        //     console.log(data);
+        // }).catch((error) => {
+        //     console.log("Api call error");
+        // })
     },
     render: function() {
         return (
