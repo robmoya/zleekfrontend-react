@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const ZLEEK_API_URL = 'https://7u3b9exy11.execute-api.us-west-2.amazonaws.com/Production/ZleekMealPlanner';
+const ZLEEK_API_URL = 'https://y3f0fa30xc.execute-api.us-west-2.amazonaws.com/Production/ZleekMealPlanner';
 
 
 let Api = {
@@ -13,8 +13,7 @@ let Api = {
         .accept('json')
         .send(mealParams)
         .then((data) => {
-            // console.log(data.body);
-            return data.body[0].mealPlan;
+            return data.body;
         })
         .catch((error) => {
             console.log(error);

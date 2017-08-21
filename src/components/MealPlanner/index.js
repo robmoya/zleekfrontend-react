@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import * as actions from '../../core/actions/mealPlannerActions';
+import * as actions from '../../core/actions/mealPlannerActions';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class'
 
 import Meal from '../common/Meal';
-// import ZleekApi from '../../api/zleekApi.js';
 // import EditMealForm from './EditMealForm';
-// import sampleApiCall from '../../api/sampleApiCall';
+ import sampleApiCall from '../../api/sampleApiCall';
 
 
 const MealPlanner = createReactClass({
@@ -15,42 +14,47 @@ const MealPlanner = createReactClass({
         this.props.onMount();
     },
     componentDidMount: function(){
-        // ZleekApi.getMealPlan(sampleApiCall).then((data) => {
-        //     // this.setState({
-        //     //     meals: data.meals,
-        //     //     nutrients: data.nutrients
-        //     // });
-        //     console.log(data);
-        // }).catch((error) => {
-        //     console.log("Api call error");
-        // })
-    },
-    renderLoading(){
-        if (this.props.fetching) {
-            return <div>Fetching</div>
-        }
     },
     render: function() {
-        const { mealPlans, nutrients } = this.props.dayPlan;
+        const { isFetched } = this.props;
+        // const dayPlans = this.props.dayPlans;
+
+        let renderNutrients = () => {
+            if(isFetched){
+                const dayPlan = this.props.dayPlans[0];
+                const { nutrients } = dayPlan;
+                return Object.keys(nutrients).map(function(key, i) {
+                    return <p key={i}>{key}: {nutrients[key]}</p>;
+                })
+            }
+        }
 
         let renderMeals = () => {
-            return mealPlans.map((mealPlan, i) => {
-                return (
-                    <Meal key={i} meal={mealPlan}/>
-                )
-            })
+            if (isFetched) {
+                const dayPlan = this.props.dayPlans[0];
+                const { mealPlans } = dayPlan;
+                return mealPlans.map((mealPlan, i) => {
+                    return (
+                        <Meal key={i} meal={mealPlan}/>
+                    )
+                })
+            }
         }
-        let renderNutrients = () => {
-            return Object.keys(nutrients).map(function(key, i) {
-                return <p key={i}>{key}: {nutrients[key]}</p>;
-            })
+
+
+        let renderFetching = () => {
+            if (!isFetched) {
+                return <p>Fetching</p>
+            }
         }
+
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col col-xs-12">
                         <h1>My Meal Planner</h1>
-                        {this.renderLoading()}
+                        {renderFetching()}
                         {/*<EditMealForm handleMealForm={this.handleMealForm} nutrients={nutrients}/>*/}
                     </div>
                 </div>
@@ -78,19 +82,20 @@ const MealPlanner = createReactClass({
 //
 MealPlanner.propTypes = {
     onMount: PropTypes.func,
-    dayPlan: PropTypes.object.isRequired
+    isFetched: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
     return {
-        fetching: state.mealPlanner.fetching,
-        dayPlan: state.mealPlanner.dayPlans
+        isFetched: state.mealPlanner.isFetched,
+        error: state.mealPlanner.error,
+        dayPlans: state.mealPlanner.dayPlans,
     };
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         onMount: () => {
-            // dispatch(fetchMealPlan({"mealsPerDay": 2, "recipesPerMeal": 3}));
+            dispatch(actions.fetchDayPlan(sampleApiCall));
             // dispatch(actions.createMealPlan({"mealsPerDay": 2, "recipesPerMeal": 3}));
         }
     };

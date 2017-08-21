@@ -9,27 +9,8 @@ import HomePage from './components/HomePage';
 import MealPlanner from './components/MealPlanner';
 import './style.css';
 
-
-// import ZleekApi from './api/zleekApi.js';
-// import EditMealForm from './EditMealForm';
-// import sampleApiCall from './api/sampleApiCall';
-
-
 const history = createBrowserHistory({});
 const store = configureStore();
-
-// store.dispatch((dispatch)=> {
-    // dispatch({"type":"CREATE_MEAL_PLAN", "mealsPerDay": 2, "recipesPerMeal": 3});
-    // dispatch({"type":"SUBSTITUTE_RECIPE", "recipeToReplace": 2});
-    // dispatch({"type":"FETCH_MEAL_PLAN", payload: {"mealsPerDay": 2, "recipesPerMeal": 3}});
-
-    // ZleekApi.getMealPlan(sampleApiCall).then((data) => {
-    //     dispatch({"type":"RECEIVE_MEAL_PLAN", "payload": data});
-    // }).catch((error) => {
-    //     console.log("Api call error");
-            // dispatch({"type":"FETCH_MEAL_PLAN_ERROR", "payload":error})
-    // })
-// })
 
 // store.subscribe(()=>{
 //     console.log('store changed', store.getState());
