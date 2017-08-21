@@ -13,10 +13,10 @@ export function fetchMealPlanError (){
     }
 }
 
-export function receiveMealPlan (mealPlan){
+export function receiveMealPlan (mealPlans){
     return {
         type: types.RECEIVE_MEAL_PLAN,
-        myMealPlan: mealPlan
+        mealPlans: mealPlans
     }
 }
 

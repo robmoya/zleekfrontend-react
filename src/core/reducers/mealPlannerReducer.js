@@ -6,10 +6,10 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
         case types.FETCH_MEAL_PLAN: {
             state = {...state,
                 fetching: true,
-                myMealPlan: {
-                    numberOfDays: action.myMealPlan.mealsPerDay,
-                    recipesPerMeal: action.myMealPlan.recipesPerMeal,
-                }
+                // mealPlans: {
+                //     numberOfDays: action.myMealPlan.mealsPerDay,
+                //     recipesPerMeal: action.myMealPlan.recipesPerMeal,
+                // }
             }
             break;
         }
