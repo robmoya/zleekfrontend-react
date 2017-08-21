@@ -1,42 +1,41 @@
 import * as types from './actionTypes';
+import ZleekApi from '../../api/zleekApi';
 
-export function fetchMealPlan (mealPlan){
-    return {
-        type: types.FETCH_MEAL_PLAN,
-        myMealPlan: mealPlan
+export function fetchDayPlan (payload){
+    return function(dispatch){
+        ZleekApi.getMealPlan(payload).then((data) => {
+            dispatch(receiveDayPlan(data));
+        }).catch((error) => {
+            dispatch(fetchDayPlanError(error))
+        });
     }
 }
 
-export function fetchMealPlanError (){
+export function fetchDayPlanError (payload){
+    console.log("Api Call Error");
     return {
-        type: types.FETCH_MEAL_PLAN_ERROR,
+        type: types.FETCH_DAY_PLAN_ERROR,
+        payload: payload
     }
 }
 
-export function receiveMealPlan (mealPlans){
+export function receiveDayPlan (payload){
     return {
-        type: types.RECEIVE_MEAL_PLAN,
-        mealPlans: mealPlans
+        type: types.RECEIVE_DAY_PLAN,
+        payload:payload
     }
 }
 
-export function createMealPlan (newPlan){
+export function createMealPlan (payload){
     return {
         type: types.CREATE_MEAL_PLAN,
-        buildNewPlan: newPlan
+        payload: payload
     }
 }
 
-export function replaceRecipe (recipe){
+export function replaceRecipe (payload){
     return {
-        type: types.SUBSTITUTE_RECIPE
+        type: types.SUBSTITUTE_RECIPE,
+        payload: payload
     }
 }
-
-
-
-
-
-
-
-// case "FETCH_MEAL_PLAN_ERROR": {
