@@ -18,6 +18,7 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
             break;
         }
         case types.RECEIVE_DAY_PLAN: {
+            console.log(action.payload);
             state = {...state,
                 isFetched: true,
                 error: false,
@@ -25,13 +26,11 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
             }
             break;
         }
-        case types.CREATE_MEAL_PLAN: {
-            // state = {...state,
-            //     buildNewPlan: {
-            //         numberOfDays: action.mealsPerDay,
-            //         recipesPerMeal: action.recipesPerMeal
-            //     }
-            // }
+        case types.BUILD_MEAL_PLAN: {
+            state = {...state,
+                isFetched:false,
+                error: false
+            }
             break;
         }
         case types.SUBSTITUTE_RECIPE : {

@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class'
 
 import Meal from '../common/Meal';
-// import EditMealForm from './EditMealForm';
- import sampleApiCall from '../../api/sampleApiCall';
+import EditMealForm from './EditMealForm';
+import sampleApiCall from '../../api/sampleApiCall';
 
 
 const MealPlanner = createReactClass({
     componentWillMount: function(){
         this.props.onMount();
     },
-    componentDidMount: function(){
-    },
+    // handleMealForm: function(buildPlan){
+    //     this.props.onFetched(buildPlan);
+    // },
     render: function() {
         const { isFetched } = this.props;
         // const dayPlans = this.props.dayPlans;
@@ -28,7 +29,6 @@ const MealPlanner = createReactClass({
                 })
             }
         }
-
         let renderMeals = () => {
             if (isFetched) {
                 const dayPlan = this.props.dayPlans[0];
@@ -40,22 +40,19 @@ const MealPlanner = createReactClass({
                 })
             }
         }
-
-
         let renderFetching = () => {
             if (!isFetched) {
                 return <div className="h4 text-primary">Fetching Your Meal Plan</div>
             }
         }
 
-
         return (
             <div className="container">
                 <div className="row">
                     <div className="col col-xs-12">
                         <h1>My Meal Planner</h1>
-
-                        {/*<EditMealForm handleMealForm={this.handleMealForm} nutrients={nutrients}/>*/}
+                        {/*<EditMealForm handleMealForm={this.handleMealForm}/>*/}
+                        <EditMealForm/>
                     </div>
                 </div>
                 <div className="row">
@@ -84,6 +81,7 @@ const MealPlanner = createReactClass({
 MealPlanner.propTypes = {
     onMount: PropTypes.func,
     isFetched: PropTypes.bool.isRequired,
+    buildPlan: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -91,13 +89,15 @@ const mapStateToProps = (state) => {
         isFetched: state.mealPlanner.isFetched,
         error: state.mealPlanner.error,
         dayPlans: state.mealPlanner.dayPlans,
+        buildPlan: state.mealPlanner.buildPlan
     };
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         onMount: () => {
             dispatch(actions.fetchDayPlan(sampleApiCall));
-            // dispatch(actions.createMealPlan({"mealsPerDay": 2, "recipesPerMeal": 3}));
+        },
+        onFetched: (buildPlan) => {
         }
     };
 };

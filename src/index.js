@@ -7,6 +7,7 @@ import configureStore from './core/store/configureStore';
 import { createBrowserHistory } from 'history'
 import HomePage from './components/HomePage';
 import MealPlanner from './components/MealPlanner';
+import 'font-awesome/css/font-awesome.css';
 import './base.css';
 // import 'bootstrap-sass/assets/javascripts/bootstrap.min.js';
 

@@ -12,7 +12,6 @@ export function fetchDayPlan (payload){
 }
 
 export function fetchDayPlanError (payload){
-    console.log("Api Call Error");
     return {
         type: types.FETCH_DAY_PLAN_ERROR,
         payload: payload
@@ -26,10 +25,13 @@ export function receiveDayPlan (payload){
     }
 }
 
-export function createMealPlan (payload){
-    return {
-        type: types.CREATE_MEAL_PLAN,
-        payload: payload
+export function buildMealPlan (payload){
+    return function(dispatch){
+        ZleekApi.getMealPlan(payload).then((data) => {
+            dispatch(receiveDayPlan(data));
+        }).catch((error) => {
+            dispatch(fetchDayPlanError(error))
+        });
     }
 }
 
