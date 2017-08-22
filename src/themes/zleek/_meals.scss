@@ -1,0 +1,177 @@
+
+.meal-card {
+  margin-bottom: 10px;
+  &:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  .meal-bg {
+    display: block;
+    height: 274px;
+    position: relative;
+    overflow: hidden;
+    .bg-size-cover {
+      height: 100%;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    .span-icon-meal{
+      width: 60px;
+      height: 60px;
+      border-radius: $border-radius-circle;
+      background-color: $brand-primary;
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      color: #fff;
+      font-size: 32px;
+      text-align: center;
+      line-height: 60px;
+    }
+  }
+  .meal-bg:hover .bg-size-cover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .like-this-meal {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .meal-labels {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+    padding: 0 16px;
+    .meal-label {
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      color: #fff;
+      margin-right: 8px;
+      display: inline-block;
+    }
+  }
+
+  .creator-avatar {
+    position: absolute;
+    right: 16px;
+    bottom: -10px;
+    height: 60px;
+    width: 60px;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #fff;
+  }
+
+  .cal-details {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 12px;
+    li {
+      height: 29px;
+      line-height: 29px;
+      border-bottom: 1px solid #f2f2f2;
+      font-size: 12px;
+      :first-child {
+        float: left;
+        margin-left: 8px;
+      }
+      :last-child {
+        float: right;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .meal-creator {
+    padding: 0 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    p {
+      font-size: 14px;
+      margin-bottom: 4px;
+      margin-top: 20px;
+    }
+  }
+
+  .star-list {
+    i {
+      margin-right: 4px;
+    }
+  }
+}
+
+
+//meal plan card
+.meal-card-container {
+  margin-bottom: 28px;
+}
+
+.meal-card-wrapper {
+  border-radius: $border-radius-base;
+  border: 1px solid $gray-hard;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  > div {
+    position: relative;
+    padding: $padding-base/2 $padding-base*2 $padding-base/2 $padding-base/2;
+    border-bottom: 1px solid $gray-hard;
+  }
+  > div:last-of-type {
+    border-bottom: none;
+  }
+  .meal-cover {
+    height: 90px;
+    width: 90px;
+    background-color: $gray-hard;
+    border-radius: $border-radius-base;
+    float: left;
+  }
+  .meal-description {
+      width: calc(100% - 180px);
+  }
+  h4 {
+    span {
+      color: $gray-harder;
+      font-size: 14px;
+    }
+  }
+  h5 {
+    color: lighten($black-light, 20%);
+    font-weight: 400;
+    font-size: 12px;
+  }
+  .meal-creator {
+    color: lighten($black-light, 20%);
+    font-size: 12px;
+    position: absolute;
+    padding-left: 36px;
+    bottom: 0;
+    img {
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      left: 0;
+      top: -14px;
+    }
+  }
+  button {
+    position: absolute;
+    right: $padding-base*2;
+    top: $padding-base*2;
+  }
+  .meal-tags {
+    position: absolute;
+    right: $padding-base*2;
+    bottom: $padding-base;
+    color: lighten($black-light, 20%);
+  }
+}

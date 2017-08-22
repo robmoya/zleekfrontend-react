@@ -1,0 +1,297 @@
+//
+// Cards
+// --------------------------------------------------
+
+
+.card {
+    margin: 0 .45em $line-height-computed;
+    background-color: $card-bg;
+
+    border-radius: $card-border-radius;
+    @include box-shadow(0 0px 4px rgba(0,0,0,.1));
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+    @media (min-width: $screen-xs-min) {
+        width: $card-width-xs;
+    }
+    @media (min-width: $screen-sm-min) {
+        width: $card-width-sm;
+    }
+    @media (min-width: $screen-md-min) {
+        width: $card-width;
+    }
+    @media (min-width: $screen-lg-min) {
+        width: $card-width-lg;
+    }
+
+    &:hover {
+        @include box-shadow(0 0px 4px rgba(0,0,0,.2));
+
+        .card-heading {
+            .card-thumbnail {
+                img {
+                    transform: scale(1.05);
+                    opacity: .6;
+                }
+            }
+        }
+    }
+    &.card-responsive {
+        width: 100%;
+        margin: 0 0 $line-height-computed;
+
+    }
+
+}
+
+.card-action {
+    position: absolute;
+    top: $line-height-computed/3;
+    right: $line-height-computed/3;
+    z-index: 3;
+}
+
+// Card contents
+
+.card-body {
+    padding: $card-body-padding;
+    font-size: $card-body-font-size;
+
+    @include clearfix;
+
+    .list-group {
+        margin: 0;
+        overflow: hidden;
+
+        .list-group-item {
+            border-width: 0px 0px 1px 0px;
+            border-style: solid ;
+            border-color: $gray-light;
+            margin-bottom: 0;
+            padding: $card-body-padding*.5;
+        }
+
+        @media (min-width: $screen-xs-min) {
+            height: $card-width-xs;
+        }
+        @media (min-width: $screen-sm-min) {
+            height: $card-width-sm/2.2;
+        }
+        @media (min-width: $screen-md-min) {
+            height: $card-width/2.8;
+        }
+        @media (min-width: $screen-lg-min) {
+            height: $card-width-lg/3.8;
+        }
+    }
+
+    +.card-footer {
+        // border: none;
+    }
+
+}
+
+
+
+// Optional heading
+.card-heading {
+  padding: $card-heading-padding;
+  border-bottom: 1px solid transparent;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  color: $white;
+
+
+  @media (min-width: $screen-xs-min) {
+      height: $card-width-xs;
+      padding: 0;
+  }
+  @media (min-width: $screen-sm-min) {
+      height: $card-width-sm*.7;
+  }
+  @media (min-width: $screen-md-min) {
+      height: $card-width*.65;
+  }
+  @media (min-width: $screen-lg-min) {
+      height: $card-width-lg*.7;
+  }
+
+  @include border-top-radius(($card-border-radius - 1));
+
+  > .dropdown .dropdown-toggle {
+    color: inherit;
+  }
+
+  +.card-footer {
+      margin-top: 1em;
+      padding: $card-body-padding/3 $card-body-padding*1.5;
+      border-top: none;
+      .avatar {
+          margin-top: -3em;
+      }
+  }
+
+}
+
+// Optional thumbnail
+.card-thumbnail {
+    overflow: hidden;
+    background-color: $card-thumbnail-bg;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    @media (min-width: $screen-xs-min) {
+        height: auto;
+        position: relative;
+    }
+    @media (min-width: $screen-sm-min) {
+        height: $card-width-sm*.7;
+    }
+    @media (min-width: $screen-md-min) {
+        height: $card-width*.65;
+    }
+    @media (min-width: $screen-lg-min) {
+        height: $card-width-lg*.7;
+    }
+
+    img {
+        @include transition(all .2s ease);
+        height: 100%;
+        opacity: .7;
+        transform: scale(1.1);
+    }
+
+    // +.card-heading {
+    //     margin-top: -($card-width/4.5);
+    //     position: relative;
+    //     color: $white;
+    //
+    // }
+}
+
+// Within heading, strip any `h*` tag of its default margins for spacing.
+.card-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: ceil(($font-size-base * 1.125));
+    color: inherit;
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    @include clearfix;
+
+    > a {
+        color: inherit;
+    }
+
+    &.bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: $card-heading-padding;
+        font-size: $font-size-h4;
+        font-family: $font-family-sans-serif;
+
+
+    }
+}
+
+// Optional footer (stays gray in every modifier class)
+.card-footer {
+    position: relative;
+    padding: $card-footer-padding;
+    background-color: $card-footer-bg;
+    border-top: 1px solid $card-inner-border;
+    @include border-bottom-radius(($card-border-radius - 1));
+    font-size: $card-body-font-size;
+    @include clearfix;
+
+    .avatar {
+        position: absolute;
+        right: 0;
+
+        z-index: 2;
+    }
+
+}
+
+.card-group {
+    margin: $line-height-computed 0;
+
+    .card {
+        text-align: left;
+        border: 1px solid transparent;
+        padding: $card-body-padding/1.5;
+
+
+    }
+}
+
+// Card Navs
+
+.card-nav {
+    .card-nav-item {
+        width: $card-nav-width;
+        height: $card-nav-height;
+        position: relative;
+        color: $white;
+        background-color: $gray-base;
+        border-radius: $border-radius-base;
+        overflow: hidden;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 .4em 2em;
+
+        &:hover {
+            .card-nav-thumbnail {
+                img{
+                    transform: scale(1);
+                    opacity: .6;
+                }
+            }
+        }
+
+        .card-nav-thumbnail {
+            position: absolute;
+            z-index: 1;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                margin: auto;
+                @include transition(all .2s ease);
+                opacity: .7;
+                transform: scale(1.2);
+            }
+        }
+        .card-nav-body {
+            position: relative;
+            z-index: 2;
+            font-size: $font-size-h4;
+            font-weight: bold;
+            line-height: $card-nav-height*.8;
+
+        }
+        .card-nav-footer {
+            position: absolute;
+            bottom: .4em;
+            left: 0;
+            display: block;
+            width: 100%;
+            z-index: 2;
+            text-align: left;
+
+        }
+    }
+}

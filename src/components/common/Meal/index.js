@@ -26,35 +26,14 @@ const Meal = createReactClass( {
         }
         return(
             <div>
-                <div className="card">
-                    <div className="card-body">
-                        <h3 className="margin-top-none">Meal &nbsp;
-                        <small>{nutrients.calories.toFixed(2)} Calories</small>
-                            {/*
-                                <small className="margin-left-md text-light-black">500 Calories
-                                    <i className="fa fa-random margin-left-md"></i>
-                                    <i className="fa fa-ellipsis-h margin-left-md"></i>
-                                </small>
-                                */}
-
-                        </h3>
+                <div className="meal-card-container">
+                    <h3>Meal &nbsp;
                         {renderNutrients()}
-                        <div className="card">
-                            <ul className="list-group list-group-flush">
-                                {renderRecipes()}
-                            </ul>
-                        </div>
-                        {/*
-                            <span className="pull-right text-red margin-top-sm">
-                                <i className="icon-heart margin-right-lg"></i>
-                                <i className="icon-carrot margin-right-lg"></i>
-                                <i className="icon-gluten"></i>
-                            </span>
-                            */}
+                    </h3>
+                    <div className="meal-card-wrapper">
+                        {renderRecipes()}
                     </div>
-
                 </div>
-                <br/>
             </div>
         )
     }

@@ -1,0 +1,13 @@
+// Badges
+
+// [converter] $parent hack
+@mixin badge-emphasis-variant($parent, $color) {
+  #{$parent} {
+    color: $white;
+    background-color: $color;
+  }
+  a#{$parent}:hover,
+  a#{$parent}:focus {
+    background-color: darken($color, 10%);
+  }
+}
