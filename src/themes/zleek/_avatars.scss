@@ -1,0 +1,36 @@
+//
+// Avatars
+// --------------------------------------------------
+
+.avatar {
+    // margin-bottom: $line-height-computed;
+    // background-color: $card-bg;
+    // border: 1px solid transparent;
+    // border-radius: $card-border-radius;
+    // @include box-shadow(0 1px 1px rgba(0,0,0,.05));
+    border-radius: $avatar-border-radius;
+    overflow: hidden;
+    height: $avatar-size;
+    width: $avatar-size;
+    border: 2px solid $avatar-border-color;
+    display: inline-block;
+    vertical-align: middle;
+
+    &.avatar-xs {
+        height: $avatar-size-xs;
+        width: $avatar-size-xs;
+    }
+    &.avatar-sm {
+        height: $avatar-size-sm;
+        width: $avatar-size-sm;
+    }
+    &.avatar-lg {
+        height: $avatar-size-lg;
+        width: $avatar-size-lg;
+        border-radius: 50%;
+    }
+
+    img {
+        height: 100%;
+    }
+}

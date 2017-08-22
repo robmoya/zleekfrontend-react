@@ -44,7 +44,7 @@ const MealPlanner = createReactClass({
 
         let renderFetching = () => {
             if (!isFetched) {
-                return <p>Fetching</p>
+                return <div className="h4 text-primary">Fetching Your Meal Plan</div>
             }
         }
 
@@ -54,7 +54,7 @@ const MealPlanner = createReactClass({
                 <div className="row">
                     <div className="col col-xs-12">
                         <h1>My Meal Planner</h1>
-                        {renderFetching()}
+
                         {/*<EditMealForm handleMealForm={this.handleMealForm} nutrients={nutrients}/>*/}
                     </div>
                 </div>
@@ -65,6 +65,7 @@ const MealPlanner = createReactClass({
                             <div className="col col-lg-9">
                                 <div id="daily-meal-plan">
                                     {renderMeals()}
+                                    {renderFetching()}
                                 </div>
                             </div>
                             <div className="col col-lg-3">

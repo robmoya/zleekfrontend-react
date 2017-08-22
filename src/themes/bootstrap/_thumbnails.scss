@@ -1,0 +1,89 @@
+//
+// Thumbnails
+// --------------------------------------------------
+
+
+// Mixin and adjust the regular image class
+.thumbnail {
+  display: inline-block;
+  // padding: $thumbnail-padding;
+  margin-bottom: $line-height-computed;
+  line-height: $line-height-base;
+  background-color: $thumbnail-bg;
+  // border: 1px solid $thumbnail-border;
+  border-radius: $thumbnail-border-radius;
+  overflow: hidden;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 .3em;
+  vertical-align: top;
+  @include transition(border .2s ease-in-out);
+  // @include thumbnail-variant($thumbnail-size-md, $thumbnail-size-md);
+
+
+  > img,
+  a > img {
+    // @include img-responsive;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: .95;
+  }
+
+  // [converter] extracted a&:hover, a&:focus, a&.active to a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active
+
+  // Image captions
+  .caption {
+    padding: $thumbnail-caption-padding;
+    color: $thumbnail-caption-color;
+    position: absolute;
+    bottom: 0;left: 0;
+    width: 100%;
+    font-size: $font-size-h6;
+    text-align: left;
+    font-weight: bold;
+
+    @include gradient-vertical(rgba(0,0,0,0), rgba(0,0,0,.5), 40%);
+
+    .avatar {
+        margin-right: .3em;
+        + span {
+            display: inline-block;
+            width: 60%;
+        }
+    }
+    span {
+        vertical-align: top;
+    }
+  }
+}
+
+// Size variations
+.thumbnail-xs {
+  @include thumbnail-variant($thumbnail-size-xs, $thumbnail-size-xs*.55);
+  img {
+      width: 100%;
+  }
+}
+.thumbnail-sm {
+  @include thumbnail-variant($thumbnail-size-xs, $thumbnail-size-xs);
+  img {
+      height: 100%;
+  }
+}
+.thumbnail-md {
+    @include thumbnail-variant($thumbnail-size-md, $thumbnail-size-md);
+    img {
+        height: 100%;
+    }
+}
+.thumbnail-lg {
+  @include thumbnail-variant($thumbnail-size-lg, $thumbnail-size-lg);
+}
+
+
+// Add a hover state for linked versions only
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: $link-color;
+}

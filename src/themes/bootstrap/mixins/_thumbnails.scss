@@ -1,0 +1,7 @@
+
+// Thumbnails
+
+@mixin thumbnail-variant($thumbnail-width, $thumbnail-height) {
+  width: $thumbnail-width;
+  height: $thumbnail-height;
+}
