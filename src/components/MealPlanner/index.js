@@ -2,23 +2,27 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../core/actions/mealPlannerActions';
 import PropTypes from 'prop-types';
-import createReactClass from 'create-react-class'
+import createReactClass from 'create-react-class';
+import initialState from '../../core/reducers/initialState';
 
 import Meal from '../common/Meal';
 import EditMealForm from './EditMealForm';
-import sampleApiCall from '../../api/sampleApiCall';
 
 
 const MealPlanner = createReactClass({
     componentWillMount: function(){
         this.props.onMount();
     },
-    // handleMealForm: function(buildPlan){
-    //     this.props.onFetched(buildPlan);
-    // },
+    handleRecipeChange: function(subRecipe){
+        this.props.substituteRecipe(subRecipe);
+    },
     render: function() {
-        const { isFetched } = this.props;
-        // const dayPlans = this.props.dayPlans;
+        const { isFetched, errorInFetch, errorMessage } = this.props;
+        let renderError = () => {
+            if (errorInFetch) {
+                return <div className="h4 text-primary">{errorMessage}</div>
+            }
+        }
 
         let renderNutrients = () => {
             if(isFetched){
@@ -35,13 +39,13 @@ const MealPlanner = createReactClass({
                 const { mealPlans } = dayPlan;
                 return mealPlans.map((mealPlan, i) => {
                     return (
-                        <Meal key={i} meal={mealPlan}/>
+                        <Meal key={i} meal={mealPlan} onHandleRecipeChange={this.handleRecipeChange}/>
                     )
                 })
             }
         }
         let renderFetching = () => {
-            if (!isFetched) {
+            if (!isFetched && !errorInFetch) {
                 return <div className="h4 text-primary">Fetching Your Meal Plan</div>
             }
         }
@@ -61,8 +65,10 @@ const MealPlanner = createReactClass({
                         <div className="row">
                             <div className="col col-lg-9">
                                 <div id="daily-meal-plan">
+
                                     {renderMeals()}
                                     {renderFetching()}
+                                    {renderError()}
                                 </div>
                             </div>
                             <div className="col col-lg-3">
@@ -81,13 +87,16 @@ const MealPlanner = createReactClass({
 MealPlanner.propTypes = {
     onMount: PropTypes.func,
     isFetched: PropTypes.bool.isRequired,
-    buildPlan: PropTypes.object.isRequired
+    buildPlan: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
     return {
         isFetched: state.mealPlanner.isFetched,
-        error: state.mealPlanner.error,
+        isFetching: state.mealPlanner.isFetching,
+        errorInFetch: state.mealPlanner.errorInFetch,
+        errorMessage: state.mealPlanner.errorMessage,
+        descriptor: state.mealPlanner.descriptor,
         dayPlans: state.mealPlanner.dayPlans,
         buildPlan: state.mealPlanner.buildPlan
     };
@@ -95,9 +104,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onMount: () => {
-            dispatch(actions.fetchDayPlan(sampleApiCall));
+            dispatch(actions.fetchDayPlan(initialState.mealPlanner.buildPlan));
         },
-        onFetched: (buildPlan) => {
+        substituteRecipe: (subRecipe) => {
+            dispatch(actions.substituteRecipe(subRecipe))
         }
     };
 };
