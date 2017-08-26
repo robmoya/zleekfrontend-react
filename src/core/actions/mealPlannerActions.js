@@ -2,11 +2,16 @@ import * as types from './actionTypes';
 import ZleekApi from '../../api/zleekApi';
 
 export function fetchDayPlan (payload){
+    payload.fn = 'buildPlan';
     return function(dispatch){
         ZleekApi.getMealPlan(payload).then((data) => {
-            dispatch(receiveDayPlan(data));
-        }).catch((error) => {
-            dispatch(fetchDayPlanError(error))
+            if (data.err) {
+                dispatch(fetchDayPlanError(data.err));
+            } else {
+                dispatch(receiveDayPlan(data));
+            }
+        }).catch((err) => {
+            dispatch(fetchDayPlanError(err))
         });
     }
 }
@@ -25,12 +30,17 @@ export function receiveDayPlan (payload){
     }
 }
 
-export function buildMealPlan (payload){
+export function substituteRecipe (payload){
+    payload.fn = 'substituteRecipe';
     return function(dispatch){
         ZleekApi.getMealPlan(payload).then((data) => {
-            dispatch(receiveDayPlan(data));
-        }).catch((error) => {
-            dispatch(fetchDayPlanError(error))
+            if (data.err) {
+                dispatch(fetchDayPlanError(data.err));
+            } else {
+                dispatch(receiveDayPlan(data));
+            }
+        }).catch((err) => {
+            dispatch(fetchDayPlanError(err))
         });
     }
 }

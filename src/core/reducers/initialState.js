@@ -2,25 +2,25 @@ export default {
     home: {},
     mealPlanner:{
         isFetched: false,
-        error:null,
+        isFetching: false,
+        errorInFetch: null,
         buildPlan:{
-            fn: "buildPlan",
-            numberOfDays: 1,
-            profile: {
-              nutrientsPerDay: {
-                carbohydrates: 0,
-                fat: 0,
-                protein: 0,
-                calories: 0
-              },
-              mealsPerDay: 1,
-              recipesPerMeal: 1,
-              restrictions: {
-                isVegan: false,
-                isVegetarian: true,
-                isLactose: false
-              }
+          "numberOfDays": 1,
+          "profile": {
+            "nutrientsPerDay": {
+              "carbohydrates": 202,
+              "fat": 50,
+              "protein": 135,
+              "calories": 1800
+            },
+            "mealsPerDay": 3,
+            "recipesPerMeal": 2,
+            "restrictions": {
+              "isVegan": false,
+              "isVegetarian": true,
+              "isLactose": false
             }
+          }
         }
     }
 }
