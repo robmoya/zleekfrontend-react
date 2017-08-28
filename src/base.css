@@ -5001,6 +5001,51 @@ button.close {
 svg {
   transform-origin: 0 0; }
 
+.mvp-page {
+  position: relative; }
+  .mvp-page h1 {
+    font-size: 100px; }
+    @media (max-width: 767px) {
+      .mvp-page h1 {
+        font-size: 50px; } }
+  .mvp-page h2 {
+    font-size: 40px;
+    font-weight: 600; }
+    @media (max-width: 767px) {
+      .mvp-page h2 {
+        font-size: 20px; } }
+  .mvp-page p {
+    font-size: 26px;
+    font-weight: 300;
+    margin-top: 32px; }
+    @media (max-width: 767px) {
+      .mvp-page p {
+        font-size: 14px; } }
+  .mvp-page .mvp-page-bg {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -1; }
+  .mvp-page .mvp-content {
+    width: 50vw;
+    height: 100%;
+    padding: 100px 16px 0;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff; }
+    @media (min-width: 768px) and (max-width: 992px) {
+      .mvp-page .mvp-content {
+        width: 80vw; } }
+    @media (max-width: 767px) {
+      .mvp-page .mvp-content {
+        padding-top: 50px;
+        width: 100vw; } }
+    .mvp-page .mvp-content button {
+      width: 300px;
+      margin-top: 32px; }
+
 #daily-meal-plan {
   min-height: calc(100vh - 140px); }
 
