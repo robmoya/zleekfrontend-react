@@ -5,7 +5,6 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
     switch(action.type){
         case types.FETCH_DAY_PLAN: {
             state = {...state,
-                isFetched:false,
                 isFetching: true,
                 errorInFetch: false
             }
@@ -13,7 +12,6 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
         }
         case types.FETCH_DAY_PLAN_ERROR: {
             state = {...state,
-                isFetched: false,
                 isFetching: false,
                 errorInFetch: true,
                 errorMessage: action.payload
@@ -22,7 +20,6 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
         }
         case types.RECEIVE_DAY_PLAN: {
             state = {...state,
-                isFetched: true,
                 isFetching: false,
                 errorInFetch: false,
                 descriptor: action.payload.descriptor,
@@ -32,7 +29,7 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
         }
         case types.BUILD_MEAL_PLAN: {
             state = {...state,
-                isFetched:false,
+                isFetching: true,
                 errorInFetch: false
             }
             break;

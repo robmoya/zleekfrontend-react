@@ -6,6 +6,7 @@
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
+    "loaders.css": "^0.1.2",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "prop-types": "^15.5.10",
