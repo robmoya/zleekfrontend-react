@@ -1,0 +1,54 @@
+.mvp-page {
+  position: relative;
+  // height: calc(100vh - 50px);
+
+  h1 {
+    font-size: 100px;
+    @media (max-width: $screen-sm - 1) {
+        font-size: 50px;
+    }
+  }
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    @media (max-width: $screen-sm - 1) {
+        font-size: 20px;
+    }
+  }
+  p {
+    font-size: 26px;
+    font-weight: 300;
+    margin-top: 32px;
+    @media (max-width: $screen-sm - 1) {
+        font-size: 14px;
+    }
+  }
+  .mvp-page-bg {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    // position: absolute;
+    position: fixed;
+    z-index: -1;
+  }
+  .mvp-content {
+    width: 50vw;
+    height: 100%;
+    padding: 100px 16px 0;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    @media (min-width: $screen-sm) and (max-width: $screen-md) {
+        width: 80vw;
+    }
+    @media (max-width: $screen-sm - 1) {
+        padding-top: 50px;
+        width: 100vw;
+    }
+    button {
+      width: 300px;
+      margin-top: 32px;
+    }
+  }
+}
