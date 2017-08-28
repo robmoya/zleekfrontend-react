@@ -1,3 +1,6 @@
+#daily-meal-plan {
+  min-height: calc(100vh - 140px);
+}
 
 .meal-card {
   margin-bottom: 10px;
@@ -14,7 +17,7 @@
       -webkit-transition: all 0.5s ease;
       transition: all 0.5s ease;
     }
-    .span-icon-meal{
+    .span-icon-meal {
       width: 60px;
       height: 60px;
       border-radius: $border-radius-circle;
@@ -39,7 +42,6 @@
     font-size: 24px;
     color: #fff;
   }
-
   .meal-labels {
     position: absolute;
     bottom: 0;
@@ -58,7 +60,6 @@
       display: inline-block;
     }
   }
-
   .creator-avatar {
     position: absolute;
     right: 16px;
@@ -70,7 +71,6 @@
     background-position: center;
     border: 2px solid #fff;
   }
-
   .cal-details {
     list-style: none;
     padding-left: 0;
@@ -80,17 +80,16 @@
       line-height: 29px;
       border-bottom: 1px solid #f2f2f2;
       font-size: 12px;
-      :first-child {
+       :first-child {
         float: left;
         margin-left: 8px;
       }
-      :last-child {
+       :last-child {
         float: right;
         margin-right: 8px;
       }
     }
   }
-
   .meal-creator {
     padding: 0 16px;
     margin-top: 20px;
@@ -102,7 +101,6 @@
       margin-top: 20px;
     }
   }
-
   .star-list {
     i {
       margin-right: 4px;
@@ -110,22 +108,20 @@
   }
 }
 
-
 //meal plan card
 .meal-card-container {
-  margin-bottom: 28px;
+  margin-bottom: 12px;
 }
 
 .meal-card-wrapper {
   border-radius: $border-radius-base;
   border: 1px solid $gray-hard;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  > div {
+  >div {
     position: relative;
     padding: $padding-base/2 $padding-base*2 $padding-base/2 $padding-base/2;
     border-bottom: 1px solid $gray-hard;
   }
-  > div:last-of-type {
+  >div:last-of-type {
     border-bottom: none;
   }
   .meal-cover {
@@ -134,9 +130,14 @@
     background-color: $gray-hard;
     border-radius: $border-radius-base;
     float: left;
+    background-size: cover;
+    background-position: center;
   }
   .meal-description {
-      width: calc(100% - 180px);
+    width: calc(100% - 180px);
+  }
+  a {
+    color: $black-light;
   }
   h4 {
     span {
@@ -148,6 +149,17 @@
     color: lighten($black-light, 20%);
     font-weight: 400;
     font-size: 12px;
+    height: 27px;
+    overflow: hidden;
+    &+p {
+      line-height: 1;
+    }
+  }
+  .change-recipe {
+    font-size: 24px;
+    color: $black-lighter;
+    float: right;
+    margin-top: 10px;
   }
   .meal-creator {
     color: lighten($black-light, 20%);
@@ -173,5 +185,35 @@
     right: $padding-base*2;
     bottom: $padding-base;
     color: lighten($black-light, 20%);
+  }
+}
+
+.stats-info {
+  hr {
+    border-color: $gray-hard;
+    margin-bottom: 32px;
+  }
+}
+
+.label-pair {
+  height: 20px;
+  margin-bottom: 7px;
+  border-top: 1px solid $gray-hard;
+  position: relative;
+  font-weight: 600;
+  span {
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    font-size: 14px;
+    top: -12px;
+  }
+  span:first-of-type {
+    left: 0;
+    padding-right: 4px;
+  }
+  span:last-of-type {
+    right: 0;
+    padding-left: 4px;
   }
 }

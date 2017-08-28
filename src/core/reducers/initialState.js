@@ -1,8 +1,7 @@
 export default {
     home: {},
     mealPlanner:{
-        isFetched: false,
-        isFetching: false,
+        isFetching: true,
         errorInFetch: null,
         buildPlan:{
           "numberOfDays": 1,

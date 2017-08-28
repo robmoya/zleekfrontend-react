@@ -5001,6 +5001,9 @@ button.close {
 svg {
   transform-origin: 0 0; }
 
+#daily-meal-plan {
+  min-height: calc(100vh - 140px); }
+
 .meal-card {
   margin-bottom: 10px; }
   .meal-card:hover {
@@ -5089,12 +5092,11 @@ svg {
     margin-right: 4px; }
 
 .meal-card-container {
-  margin-bottom: 28px; }
+  margin-bottom: 12px; }
 
 .meal-card-wrapper {
   border-radius: 4px;
-  border: 1px solid #E8E9ED;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+  border: 1px solid #E8E9ED; }
   .meal-card-wrapper > div {
     position: relative;
     padding: 4px 16px 4px 4px;
@@ -5106,16 +5108,29 @@ svg {
     width: 90px;
     background-color: #E8E9ED;
     border-radius: 4px;
-    float: left; }
+    float: left;
+    background-size: cover;
+    background-position: center; }
   .meal-card-wrapper .meal-description {
     width: calc(100% - 180px); }
+  .meal-card-wrapper a {
+    color: #555555; }
   .meal-card-wrapper h4 span {
     color: #CCCCCC;
     font-size: 14px; }
   .meal-card-wrapper h5 {
     color: #888888;
     font-weight: 400;
-    font-size: 12px; }
+    font-size: 12px;
+    height: 27px;
+    overflow: hidden; }
+    .meal-card-wrapper h5 + p {
+      line-height: 1; }
+  .meal-card-wrapper .change-recipe {
+    font-size: 24px;
+    color: #979797;
+    float: right;
+    margin-top: 10px; }
   .meal-card-wrapper .meal-creator {
     color: #888888;
     font-size: 12px;
@@ -5137,6 +5152,164 @@ svg {
     right: 16px;
     bottom: 8px;
     color: #888888; }
+
+.stats-info hr {
+  border-color: #E8E9ED;
+  margin-bottom: 32px; }
+
+.label-pair {
+  height: 20px;
+  margin-bottom: 7px;
+  border-top: 1px solid #E8E9ED;
+  position: relative;
+  font-weight: 600; }
+  .label-pair span {
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    font-size: 14px;
+    top: -12px; }
+  .label-pair span:first-of-type {
+    left: 0;
+    padding-right: 4px; }
+  .label-pair span:last-of-type {
+    right: 0;
+    padding-left: 4px; }
+
+.margin-top-none {
+  margin-top: 0 !important; }
+
+.margin-left-none {
+  margin-left: 0 !important; }
+
+.margin-right-none {
+  margin-right: 0 !important; }
+
+.margin-bottom-none {
+  margin-bottom: 0 !important; }
+
+.margin-top-xs {
+  margin-top: 0.5rem !important; }
+
+.margin-left-xs {
+  margin-left: 0.5rem !important; }
+
+.margin-right-xs {
+  margin-right: 0.5rem !important; }
+
+.margin-bottom-xs {
+  margin-bottom: 0.5rem !important; }
+
+.margin-top-sm {
+  margin-top: 1rem !important; }
+
+.margin-left-sm {
+  margin-left: 1rem !important; }
+
+.margin-right-sm {
+  margin-right: 1rem !important; }
+
+.margin-bottom-sm {
+  margin-bottom: 1rem !important; }
+
+.margin-top-md {
+  margin-top: 1.5rem !important; }
+
+.margin-left-md {
+  margin-left: 1.5rem !important; }
+
+.margin-right-md {
+  margin-right: 1.5rem !important; }
+
+.margin-bottom-md {
+  margin-bottom: 1.5rem !important; }
+
+.margin-top-lg {
+  margin-top: 2rem !important; }
+
+.margin-left-lg {
+  margin-left: 2rem !important; }
+
+.margin-right-lg {
+  margin-right: 2rem !important; }
+
+.margin-bottom-lg {
+  margin-bottom: 2rem !important; }
+
+.margin-top-xl {
+  margin-top: 2.5rem !important; }
+
+.margin-left-xl {
+  margin-left: 2.5rem !important; }
+
+.margin-right-xl {
+  margin-right: 2.5rem !important; }
+
+.margin-bottom-xl {
+  margin-bottom: 2.5rem !important; }
+
+.margin-none {
+  margin: 0 !important; }
+
+.w-5 {
+  width: 5% !important; }
+
+.w-10 {
+  width: 10% !important; }
+
+.w-15 {
+  width: 15% !important; }
+
+.w-20 {
+  width: 20% !important; }
+
+.w-25 {
+  width: 25% !important; }
+
+.w-30 {
+  width: 30% !important; }
+
+.w-35 {
+  width: 35% !important; }
+
+.w-40 {
+  width: 40% !important; }
+
+.w-45 {
+  width: 45% !important; }
+
+.w-50 {
+  width: 50% !important; }
+
+.w-55 {
+  width: 55% !important; }
+
+.w-60 {
+  width: 60% !important; }
+
+.w-65 {
+  width: 65% !important; }
+
+.w-70 {
+  width: 70% !important; }
+
+.w-75 {
+  width: 75% !important; }
+
+.w-80 {
+  width: 80% !important; }
+
+.w-85 {
+  width: 85% !important; }
+
+.w-90 {
+  width: 90% !important; }
+
+.w-95 {
+  width: 95% !important; }
+
+.w-100 {
+  width: 100% !important; }
 
 .border-radius-base {
   border-radius: 4px; }
@@ -5167,7 +5340,7 @@ svg {
   padding: 16px; }
 
 .padding-left-right {
-  padding: 0 8px; }
+  padding: 0 16px; }
 
 .padding-left-right-small {
   padding: 0 4px; }

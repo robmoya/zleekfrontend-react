@@ -1,9 +1,12 @@
 import * as types from './actionTypes';
 import ZleekApi from '../../api/zleekApi';
 
-export function fetchDayPlan (payload){
+export function fetchDayPlan(payload) {
     payload.fn = 'buildPlan';
-    return function(dispatch){
+    return function (dispatch) {
+        dispatch({
+            type: types.FETCH_DAY_PLAN
+        });
         ZleekApi.getMealPlan(payload).then((data) => {
             if (data.err) {
                 dispatch(fetchDayPlanError(data.err));
@@ -16,23 +19,26 @@ export function fetchDayPlan (payload){
     }
 }
 
-export function fetchDayPlanError (payload){
+export function fetchDayPlanError(payload) {
     return {
         type: types.FETCH_DAY_PLAN_ERROR,
         payload: payload
     }
 }
 
-export function receiveDayPlan (payload){
+export function receiveDayPlan(payload) {
     return {
         type: types.RECEIVE_DAY_PLAN,
-        payload:payload
+        payload: payload
     }
 }
 
-export function substituteRecipe (payload){
+export function substituteRecipe(payload) {
     payload.fn = 'substituteRecipe';
-    return function(dispatch){
+    return function (dispatch) {
+        dispatch({
+            type: types.FETCH_DAY_PLAN
+        });
         ZleekApi.getMealPlan(payload).then((data) => {
             if (data.err) {
                 dispatch(fetchDayPlanError(data.err));
@@ -45,7 +51,7 @@ export function substituteRecipe (payload){
     }
 }
 
-export function replaceRecipe (payload){
+export function replaceRecipe(payload) {
     return {
         type: types.SUBSTITUTE_RECIPE,
         payload: payload

@@ -28,11 +28,10 @@ const Meal = createReactClass( {
             })
         }
         return(
-            <div>
+            <div className="col-xs-12">
                 <div className="meal-card-container">
-                    <h3>Meal &nbsp;
-                        {renderNutrients()}
-                    </h3>
+                    <h3 className="margin-bottom-none">Meal</h3>
+                    <p className="margin-bottom-lg">{renderNutrients()}</p>
                     <div className="meal-card-wrapper">
                         {renderRecipes()}
                     </div>

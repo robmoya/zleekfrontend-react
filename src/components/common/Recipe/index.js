@@ -55,10 +55,8 @@ const Recipe = createReactClass({
         }
         let renderIngredients = () => {
             return ingredients.map((ingredient, i) => {
-                return (
-                    <small key={i}>{ingredient.name}</small>
-                )
-            })
+                return ingredient.name;
+            }).join('').substring(0, 80);
         }
 
         return(
@@ -71,15 +69,11 @@ const Recipe = createReactClass({
                             {name}
                         </Link>
                     </h4>
-                    <h5>{renderIngredients()}</h5>
-                    <p>{renderNutrients()}</p>
-                    <p>{renderDirections()}</p>
+                    <h5>{renderIngredients()}...<span className="text-primary">See More</span></h5>
+                     <p className="margin-bottom-none">{renderNutrients()}</p> 
+                    <p className="hidden">{renderDirections()}</p>
                 </div>
-                <button className="btn btn-gray-light-transparent btn-sm" onClick={this.changeRecipe}>Change Recipe</button>
-                <span className="meal-tags">
-                    <i className="icon-gluten margin-right-lg"></i>
-                    <i className="icon-carrot"></i>
-                </span>
+                <span className="fa fa-random cursor-pointer change-recipe" onClick={this.changeRecipe}></span>
                 <div className="clearfix"></div>
             </div>
         )
