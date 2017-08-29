@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import Recipe from '../Recipe';
 
 const Meal = createReactClass( {
-    handleRecipeChange: function(recipeSub){
-        this.props.onHandleRecipeChange(recipeSub);
+    handleRecipeChange: function(marker){
+        marker.meal = this.props.id;
+        this.props.onHandleRecipeChange(marker);
     },
     componentWillMount: function() {
         // console.log(this.props);
@@ -23,7 +24,7 @@ const Meal = createReactClass( {
         let renderRecipes = () => {
             return recipePlans.map((recipePlan, i) => {
                 return (
-                    <Recipe key={i} recipe={recipePlan} onHandleRecipeChange={this.handleRecipeChange}/>
+                    <Recipe key={i} id={i} recipe={recipePlan} onHandleRecipeChange={this.handleRecipeChange}/>
                 )
             })
         }

@@ -14,8 +14,26 @@ const MealPlanner = createReactClass({
     componentWillMount: function () {
         this.props.onMount();
     },
-    handleRecipeChange: function (subRecipe) {
-        this.props.substituteRecipe(subRecipe);
+    handleRecipeChange: function (marker) {
+        let {calories, protein, fat, carbohydrates} = this.props.dayPlans[0].nutrients;
+
+        const substitutePlan = {
+            "profile": {
+                ...initialState.mealPlanner.substituteRecipe.profile,
+                "nutrientsPerDay": {
+                    "carbohydrates": carbohydrates,
+                    "fat": fat,
+                    "protein": protein,
+                    "calories":calories
+                }
+            },
+            "descriptor": this.props.descriptor,
+            "marker": {
+                ...marker,
+                day:0
+            }
+        };
+        this.props.substituteRecipe(substitutePlan);
     },
     render: function () {
         const { isFetching, errorInFetch, errorMessage } = this.props;
@@ -43,7 +61,7 @@ const MealPlanner = createReactClass({
                 const { mealPlans } = dayPlan;
                 return mealPlans.map((mealPlan, i) => {
                     return (
-                        <Meal key={i} meal={mealPlan} onHandleRecipeChange={this.handleRecipeChange} />
+                        <Meal key={i} meal={mealPlan} id={i} onHandleRecipeChange={this.handleRecipeChange} />
                     )
                 })
             }
