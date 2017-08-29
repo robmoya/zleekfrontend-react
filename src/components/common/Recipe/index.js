@@ -8,35 +8,10 @@ import PropTypes from 'prop-types';
 const Recipe = createReactClass({
     changeRecipe : function (e){
         e.preventDefault();
-        // let recipe = {recipe:'recipe'}
-        let buildPlan = {
-          "profile": {
-            "nutrientsPerDay": {
-              "carbohydrates": 202,
-              "fat": 50,
-              "protein": 135,
-              "calories": 1800
-            },
-            "mealsPerDay": 3,
-            "recipesPerMeal": 2,
-            "restrictions": {
-              "isVegan": false,
-              "isVegetarian": true,
-              "isLactose": false
-            }
-          },
-          "descriptor": "eyJwbGFuIjpbeyJkYXlQyAxtZWFsyQ1yZWNpcGXGD8gOSWQiOiIzNSIsImluZ3JlZGllbnRzxB8xIjo2LCIyIjowLCIzIjo0LCI0xQw1Ijo1LCI2xQw3xQY4IjowfX19LNthNjjYYTMiOjMyxVw1xVww0VwzLCI5IjoxLCIxMMUTMTHGBzLFQDEzIjo2fX19XeQAgP8A7ucAjTg29QCNMesA7uYAkjbmAJL/ANz9ANw4xUk3xUkyOOsA3DLmATjsANzEB+oA3DPmANwy/wDc7wCNNTL1AI005QDcMTHlAJQx/wDd/wDd6gDdMjbFSjTFSjE38QDeNuUA3uQA0PEBuucA3jXlAN7EAg==",
-          "marker": {
-            "day": 0,
-            "meal": 0,
-            "recipe": 0
-          }
+        let marker = {
+            recipe: this.props.id
         }
-        this.props.onHandleRecipeChange(buildPlan);
-
-
-        // this.setState({buildPlan})
-        // return buildPlan;
+        this.props.onHandleRecipeChange(marker);
     },
     render: function(){
         const { recipeId, name, directions, ingredients, nutrients } = this.props.recipe;
@@ -70,7 +45,7 @@ const Recipe = createReactClass({
                         </Link>
                     </h4>
                     <h5>{renderIngredients()}...<span className="text-primary">See More</span></h5>
-                     <p className="margin-bottom-none">{renderNutrients()}</p> 
+                     <p className="margin-bottom-none">{renderNutrients()}</p>
                     <p className="hidden">{renderDirections()}</p>
                 </div>
                 <span className="fa fa-random cursor-pointer change-recipe" onClick={this.changeRecipe}></span>
