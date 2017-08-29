@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types';
-// import actions from '../../../core/actions/mealPlannerActions'
 
 const Recipe = createReactClass({
     changeRecipe : function (e){
@@ -39,11 +38,9 @@ const Recipe = createReactClass({
                 <div className="bg-size-cover meal-cover" style={{ backgroundImage: 'url(http://op9ls46e5.bkt.gdipper.com/meal_plan1.jpg)' }}>
                 </div>
                 <div className="pull-left margin-left-sm meal-description">
-                    <h4>
-                        <Link to={`/recipes/${recipeId}/default`} className="recipe-bg clickable">
-                            {name}
-                        </Link>
-                    </h4>
+                    <Link to={`/recipes/${recipeId}/default`} className="recipe-bg clickable h4">
+                        {name}
+                    </Link>
                     <h5>{renderIngredients()}...<span className="text-primary">See More</span></h5>
                      <p className="margin-bottom-none">{renderNutrients()}</p>
                     <p className="hidden">{renderDirections()}</p>
