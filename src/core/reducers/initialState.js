@@ -2,6 +2,7 @@ export default {
     home: {},
     mealPlanner:{
         isFetching: true,
+        isAdvanced: false,
         errorInFetch: null,
         buildPlan:{
           "numberOfDays": 1,

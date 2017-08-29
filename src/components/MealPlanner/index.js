@@ -17,7 +17,7 @@ const MealPlanner = createReactClass({
     handleRecipeChange: function (marker) {
         let {calories, protein, fat, carbohydrates} = this.props.dayPlans[0].nutrients;
 
-        const substitutePlan = {
+        let substitutePlan = {
             "profile": {
                 ...initialState.mealPlanner.substituteRecipe.profile,
                 "nutrientsPerDay": {
