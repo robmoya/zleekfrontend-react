@@ -1,0 +1,6 @@
+.rating-label {
+  display: inline-block;
+  i {
+    margin: 0 2px;
+  }
+}

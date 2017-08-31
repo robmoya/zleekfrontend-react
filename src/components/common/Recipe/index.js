@@ -12,6 +12,9 @@ const Recipe = createReactClass({
         }
         this.props.onHandleRecipeChange(marker);
     },
+    getRandom: function (min, max) {
+        return Math.random() * (max - min) + min;
+    },
     render: function(){
         const { recipeId, name, directions, ingredients, nutrients } = this.props.recipe;
 
@@ -33,9 +36,15 @@ const Recipe = createReactClass({
             }).join('').substring(0, 80);
         }
 
+        const bgUrl = 'url(http://op9ls46e5.bkt.gdipper.com/recipe_' + this.getRandom(1, 30).toFixed(0) + '.jpg)';
+
+        const mealBgStyle = {
+            backgroundImage: bgUrl
+        };
+
         return(
             <div>
-                <div className="bg-size-cover meal-cover" style={{ backgroundImage: 'url(http://op9ls46e5.bkt.gdipper.com/meal_plan1.jpg)' }}>
+                <div className="bg-size-cover meal-cover" style={mealBgStyle}>
                 </div>
                 <div className="pull-left margin-left-sm meal-description">
                     <Link to={`/recipes/${recipeId}/default`} className="recipe-bg clickable h4">

@@ -133,3 +133,22 @@
 .content-padding {
   padding-top: $content-padding-top;
 }
+
+// background
+
+.bg-gray-light {
+  background-color: $gray-light;
+}
+
+.bg-size-cover {
+  background-size: cover;
+  background-position: center;
+}
+
+// font
+
+.font-lobster {
+  font-family: Lobster;
+  font-style: normal;
+	font-variant: normal;
+}

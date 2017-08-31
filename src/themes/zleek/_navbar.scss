@@ -1,0 +1,87 @@
+//
+// Navbars
+// --------------------------------------------------
+
+.navbar-inverse {
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+}
+
+.navbar-header {
+  margin: 0 !important;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-toggle {
+  border-color: $brand-primary !important;
+  background-color: $brand-primary !important;
+}
+
+.navbar-form {
+  border-color: transparent !important;
+  .input-group {
+    background-color: $gray-light;
+    border-radius: 75px;
+    overflow: hidden;
+  }
+  .form-control {
+    height: 33px;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 0 0 #fff;
+  }
+  button {
+    border: none;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: $black-light !important;
+  }
+}
+
+.navbar-search-form {
+  float: left;
+  margin: 8px;
+}
+
+.navbar-img {
+  width: 32px;
+  height: 32px;
+}
+
+.nav > li > a {
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
+  color: $black-light !important;
+  background-color: transparent !important;
+  &:hover, &:focus, &:active {
+    background-color: $gray-light !important;
+  }
+}
+
+.navbar-collapse {
+  border-color: $gray-light !important;
+}
+
+.navbar-inverse .divider {
+  background-color: $gray-light !important;
+}
+
+@media (max-width: $grid-float-breakpoint-max) {
+  .navbar-nav {
+    margin-top: 20px !important;
+  }
+}
+
+.navbar-logo {
+  float: left;
+  padding: 14px 0;
+  font-size: 24px;
+  line-height: 20px;
+  height: 50px;
+  color: $brand-primary !important;
+  text-decoration: none !important;
+}
