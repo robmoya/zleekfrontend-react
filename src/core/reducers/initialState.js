@@ -31,7 +31,11 @@ export default {
                 "isVegetarian": true,
                 "isLactose": false
               }
-          }
+          },
+          isFetching: false,
+          meal: -1,
+          recipe: -1,
+          recipePlan: {}
         //   "profile": {
         //     "nutrientsPerDay": {
         //       "carbohydrates": 202,

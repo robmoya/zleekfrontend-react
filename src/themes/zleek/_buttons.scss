@@ -1,0 +1,76 @@
+//
+// Buttons
+// --------------------------------------------------
+
+// Base styles
+// --------------------------------------------------
+
+.btn-facebook {
+  @include button-variant($color-facebook, $color-facebook, $color-facebook);
+  color: #fff !important;
+}
+
+.btn-white {
+  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+  background-color: transparent;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  &:hover {
+    background-color: $btn-info-bg;
+  }
+  &:active,
+  &:hover,
+  &:focus {
+    border: 1px solid $btn-info-border !important;
+  }
+}
+
+.btn-gray-light {
+  @include button-variant($text-light-black, $gray-light, $gray-light);
+}
+
+.btn-gray-light-transparent {
+  @include button-variant($text-light-black, $gray-light, $gray-light);
+  background-color: transparent;
+  border: 1px solid !important;
+}
+
+.btn-blue {
+  @include button-variant($brand-blue, $brand-blue, $brand-blue);
+  color: #fff !important;
+}
+
+.btn-blue-transparent {
+  @include button-variant($brand-blue, $brand-blue, $brand-blue);
+  background-color: transparent;
+  border: 1px solid !important;
+  &:active,
+  &:hover,
+  &:focus {
+    color: #fff !important;
+  }
+}
+
+.btn-info-transparent {
+  @include button-variant($btn-info-color, $btn-info-color, $btn-info-color);
+  background-color: transparent;
+  &:active,
+  &:hover,
+  &:focus {
+    color: #fff !important;
+  }
+}
+
+.btn-black-lighter-transparent {
+  @include button-variant($black-lighter, $black-lighter, $black-lighter);
+  background-color: transparent;
+  &:active,
+  &:hover,
+  &:focus {
+    color: #fff !important;
+  }
+}
+
+.btn {
+  outline: none !important;
+}

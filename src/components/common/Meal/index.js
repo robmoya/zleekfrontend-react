@@ -1,12 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types';
 import Recipe from '../Recipe';
 
 const Meal = createReactClass( {
     handleRecipeChange: function(marker){
-        marker.meal = this.props.id;
+        marker.meal = this.props.mealMarkerId;
         this.props.onHandleRecipeChange(marker);
     },
     componentWillMount: function() {
@@ -24,7 +23,7 @@ const Meal = createReactClass( {
         let renderRecipes = () => {
             return recipePlans.map((recipePlan, i) => {
                 return (
-                    <Recipe key={i} id={i} recipe={recipePlan} onHandleRecipeChange={this.handleRecipeChange}/>
+                    <Recipe key={i} recipeMarkerId={i} mealMarkerId={this.props.mealMarkerId} substituteRecipe={this.props.substituteRecipe} recipe={recipePlan} onHandleRecipeChange={this.handleRecipeChange}/>
                 )
             })
         }
@@ -43,20 +42,9 @@ const Meal = createReactClass( {
 });
 
 Meal.propTypes = {
-    meal: PropTypes.object.isRequired
+    meal: PropTypes.object.isRequired,
+    mealMarkerId: PropTypes.number.isRequired,
+    substituteRecipe: PropTypes.object.isRequired
 }
 
-const mapStateToProps = (state) => {
-    return {
-    };
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // onMount: () => {
-            // dispatch(fetchMealPlan({"mealsPerDay": 2, "recipesPerMeal": 3}));
-            // dispatch(actions.createMealPlan({"mealsPerDay": 2, "recipesPerMeal": 3}));
-        // }
-    };
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(Meal);
+export default Meal;

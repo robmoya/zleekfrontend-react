@@ -1,0 +1,338 @@
+.recipe-page {
+  padding-top: 3px;
+  h3 {
+    font-size: 18px;
+  }
+  .recipe-header {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    h1 {
+      line-height: 1.4;
+      font-size: 32px;
+      margin: 0;
+      i {
+        font-size: 28px;
+      }
+    }
+    button {
+      width: 176px;
+    }
+    .recipe-creator-info {
+      margin: 8px 0 16px 0;
+      display: flex;
+      color: $black-light;
+      img {
+        height: 40px;
+        width: 40px;
+      }
+      div {
+        padding-top: 2px;
+      }
+      p {
+        margin-bottom: 2px;
+        font-size: 12px;
+        margin-left: 8px;
+        &:first-of-type {
+          font-size: 14px;
+        }
+      }
+      i {
+        color: $gray-harder;
+      }
+    }
+    >div {
+      display: inline-block;
+    }
+    .recipe-recommendations {
+      float: right;
+      >div {
+        height: 153px;
+        width: 153px;
+        margin-right: 8px;
+        position: relative;
+        float: right;
+        >div {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          color: #fff;
+          background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+          background: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+          padding: 8px 4px;
+        }
+      }
+      img {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #fff;
+        display: inline-block;
+        float: left;
+      }
+      span {
+        display: inline-block;
+        float: left;
+        font-size: 12px;
+        margin-left: 8px;
+        margin-top: 4px;
+      }
+    }
+  }
+  .recipe-cover {
+    height: 146px;
+    padding: 8px;
+    position: relative;
+    >div {
+      height: 100%;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    h2 {
+      margin: 0 12px;
+    }
+    a {
+      margin-right: 36px;
+    }
+  }
+  .stats-info,
+  .ingredients-info {
+    padding-left: 15px !important;
+    padding-right: 0 !important;
+  }
+  .padding-left-right {
+    padding: 0 20px !important;
+  }
+  .block-header {
+    margin: 0;
+    height: 54px;
+    line-height: 54px;
+    position: relative;
+    .block-arrow {
+      position: absolute;
+      font-size: 18px;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+.recipe-content {
+  padding: 0 20px;
+  border-bottom: 1px solid $gray-hard;
+}
+
+.nutrition-cate {
+  padding: 20px 0;
+  border-bottom: 1px solid $gray-hard;
+  span {
+    border: 1px solid $gray-harder;
+    height: 22px;
+    line-height: 22px;
+    border-radius: $border-radius-base;
+    color: $gray-harder;
+    padding: $padding-base/2 $padding-base;
+    font-size: 12px;
+    margin: 0 10px;
+  }
+  span:first-of-type {
+    margin-left: 0;
+  }
+  span.active {
+    background-color: $brand-primary;
+    border: 1px solid $brand-primary;
+    color: #fff;
+  }
+}
+
+.recipe-notes {
+  h2 {
+    display: inline-block;
+  }
+  .cooking-timer {
+    margin-left: 20px;
+    display: inline-block;
+    color: $black-light;
+    .fa-clock-o {
+      font-size: 24px;
+      display: inline-block;
+    }
+    div {
+      display: inline-block;
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 0 10px;
+      border-left: 1px solid #bfbfbf;
+      span {
+        color: #bfbfbf;
+      }
+    }
+    div:first-of-type {
+      border-left: none;
+    }
+  }
+  .chart-label {
+    color: #bfbfbf;
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 12px;
+    i {
+      color: $black-light;
+      font-size: 24px;
+    }
+  }
+}
+
+.recipe-actions {
+  float: right;
+  margin-top: 30px;
+  span {
+    float: right;
+    color: #bfbfbf;
+    margin-left: 28px;
+    font-size: 16px;
+  }
+}
+
+.cooking-step {
+  display: flex;
+  margin-top: 32px;
+  color: $black-light;
+  .step-number {
+    margin-top: 4px;
+    span {
+      display: block;
+      height: 26px;
+      width: 26px;
+      color: #bfbfbf;
+      border: 1px solid #bfbfbf;
+      border-radius: 50%;
+      margin: 0 16px;
+      text-align: center;
+      line-height: 26px;
+    }
+  }
+  .recipe-image {
+    width: 420px;
+    height: 280px;
+    margin: 30px auto 0;
+  }
+}
+
+//stats info
+.stats-info {
+  padding-left: 0;
+  hr {
+    border-color: #eee;
+    margin-bottom: 32px;
+  }
+  hr:last-of-type {
+    border-top-style: dashed;
+  }
+}
+
+#nutrition-detail {
+  text-align: center;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.stats-info-icon {
+  height: 14px;
+  width: 14px;
+  font-size: 12px;
+  line-height: 14px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid $black-light;
+  color: $black-light;
+  text-align: center;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+// ingredients info
+.ingredients-info {
+  padding-left: 0;
+}
+
+.label-pair {
+  height: 14px;
+  margin-bottom: 7px;
+  border-top: 1px solid $gray-hard;
+  position: relative;
+  span {
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    font-size: 14px;
+    top: -12px;
+  }
+  span:first-of-type {
+    left: 0;
+    padding-right: 4px;
+  }
+  span:last-of-type {
+    right: 0;
+    padding-left: 4px;
+  }
+}
+
+.ingredients-list {
+  border-top: 1px solid $gray-hard;
+  margin-bottom: 75px;
+  .ingredients-ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-top: 20px;
+    li {
+      margin-bottom: 26px;
+      font-size: 13px;
+      i:first-of-type {
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
+  }
+  .ingredient-item {
+    border-bottom: 1px solid $gray-hard;
+    padding: 10px 0;
+    font-size: 12px;
+  }
+  input {
+    display: inline-block;
+    width: 24px;
+    margin: 0 8px;
+    border: 1px solid #ebebeb;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 2px;
+  }
+  i {
+    font-size: 10px;
+  }
+}
+
+//tab bar
+.tab-bar {
+  height: 54px;
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      float: left;
+      margin: 0 24px;
+      line-height: 52px;
+      font-size: 16px;
+      height: 52px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    li.active {
+      border-bottom: 2px solid $brand-primary;
+    }
+    a {
+      display: block;
+    }
+  }
+}

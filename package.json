@@ -22,7 +22,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "superagent": "^3.5.2",
-    "thunk": "0.0.1"
+    "thunk": "0.0.1",
+    "underscore": "^1.8.3"
   },
   "scripts": {
     "start-js": "react-scripts start",

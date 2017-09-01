@@ -1,17 +1,19 @@
 import initialState from './initialState';
 import * as types from '../actions/actionTypes';
 
-const mealPlanReducer = (state= initialState.mealPlanner, action) => {
-    switch(action.type){
+const mealPlanReducer = (state = initialState.mealPlanner, action) => {
+    switch (action.type) {
         case types.FETCH_DAY_PLAN: {
-            state = {...state,
+            state = {
+                ...state,
                 isFetching: true,
                 errorInFetch: false
             }
             break;
         }
         case types.FETCH_DAY_PLAN_ERROR: {
-            state = {...state,
+            state = {
+                ...state,
                 isFetching: false,
                 errorInFetch: true,
                 errorMessage: action.payload
@@ -19,7 +21,8 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
             break;
         }
         case types.RECEIVE_DAY_PLAN: {
-            state = {...state,
+            state = {
+                ...state,
                 isFetching: false,
                 errorInFetch: false,
                 descriptor: action.payload.descriptor,
@@ -28,18 +31,41 @@ const mealPlanReducer = (state= initialState.mealPlanner, action) => {
             break;
         }
         case types.BUILD_MEAL_PLAN: {
-            state = {...state,
+            state = {
+                ...state,
                 isFetching: true,
                 errorInFetch: false
             }
             break;
         }
-        case types.SUBSTITUTE_RECIPE : {
+        case types.SUBSTITUTE_RECIPE: {
             // state = {...state,
             //     replaceRecipe: {
             //         recipeId: action.recipeToReplace
             //     }
             // }
+            break;
+        }
+        case types.FETCH_SUBSTITUTE_RECIPE: {
+            state = Object.assign({}, state, {
+                substituteRecipe: {
+                    isFetching: true,
+                    meal: action.payload.marker.meal,
+                    recipe: action.payload.marker.recipe
+                }
+            });
+            break;
+        }
+        case types.RECEIVE_SUBSTITUTE_RECIPE: {
+            state = Object.assign({}, state, {
+                dayPlans: [action.payload.dayPlans],
+                substituteRecipe: {
+                    isFetching: false,
+                    meal: action.payload.marker.meal,
+                    recipe: action.payload.marker.recipe,
+                    recipePlan: action.payload.recipePlan
+                }
+            });
             break;
         }
         default: break

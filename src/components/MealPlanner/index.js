@@ -36,7 +36,7 @@ const MealPlanner = createReactClass({
         this.props.substituteRecipe(substitutePlan);
     },
     render: function () {
-        const { isFetching, errorInFetch, errorMessage } = this.props;
+        const { isFetching, errorInFetch, errorMessage, substituteRecipeObj } = this.props;
         let renderError = () => {
             if (errorInFetch) {
                 return <div className="h4 text-primary">{errorMessage}</div>
@@ -61,7 +61,7 @@ const MealPlanner = createReactClass({
                 const { mealPlans } = dayPlan;
                 return mealPlans.map((mealPlan, i) => {
                     return (
-                        <Meal key={i} meal={mealPlan} id={i} onHandleRecipeChange={this.handleRecipeChange} />
+                        <Meal key={i} meal={mealPlan} mealMarkerId={i} substituteRecipe={substituteRecipeObj} onHandleRecipeChange={this.handleRecipeChange} />
                     )
                 })
             }
@@ -122,7 +122,8 @@ const mapStateToProps = (state) => {
         errorMessage: state.mealPlanner.errorMessage,
         descriptor: state.mealPlanner.descriptor,
         dayPlans: state.mealPlanner.dayPlans,
-        buildPlan: state.mealPlanner.buildPlan
+        buildPlan: state.mealPlanner.buildPlan,
+        substituteRecipeObj: state.mealPlanner.substituteRecipe
     };
 }
 const mapDispatchToProps = (dispatch) => {
