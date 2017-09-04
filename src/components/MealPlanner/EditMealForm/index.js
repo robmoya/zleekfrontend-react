@@ -4,8 +4,8 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import initialState from '../../../core/reducers/initialState';
 import * as actions from '../../../core/actions/mealPlannerActions';
-
-
+// import AdvancedForm from './AdvancedForm';
+import BasicForm from './BasicForm';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import './index.css';
@@ -25,21 +25,15 @@ const EditMealForm = createReactClass({
     },
     changeSlider: function (e) {
         let buildPlan = {
-            "numberOfDays": 1,
+            ...initialState.mealPlanner.buildPlan,
             "profile": {
+                ...initialState.mealPlanner.buildPlan.profile,
                 "nutrientsPerDay": {
                     "carbohydrates": this.refs.carbohydrates.state.value,
                     "fat": this.refs.fat.state.value,
                     "protein": this.refs.protein.state.value,
                     "calories": this.refs.calories.state.value
                 },
-                "mealsPerDay": 3,
-                "recipesPerMeal": 2,
-                "restrictions": {
-                    "isVegan": false,
-                    "isVegetarian": true,
-                    "isLactose": false
-                }
             }
         }
         this.setState({ buildPlan })
@@ -47,12 +41,27 @@ const EditMealForm = createReactClass({
     },
     onFormSubmit: function (e) {
         e.preventDefault();
-        // const buildPlan = this.props.buildPlan;
-        const buildPlan = this.changeSlider();
-        // const profile = this.changeSlider();
-        this.props.buildMealPlan(buildPlan);
-    },
+        if (this.state.isAdvanced) {
+            const buildPlan = this.changeSlider();
+            this.props.buildMealPlan(buildPlan);
+        }else {
+            this.handleBasicForm();
+        }
 
+    },
+    handleBasicForm: function(basicBuildPlan){
+
+        let buildPlan = {
+            ...initialState.mealPlanner.buildPlan,
+            "profile": {
+                ...initialState.mealPlanner.buildPlan.profile,
+                "mealsPerDay": basicBuildPlan.mealsPerDay
+            }
+        }
+        console.log(buildPlan);
+        // this.setState({ buildPlan })
+        // return buildPlan;
+    },
     render: function () {
         let {isAdvanced} = this.state;
         const { carbohydrates, fat, protein, calories } = this.state.buildPlan.profile.nutrientsPerDay;
@@ -66,7 +75,7 @@ const EditMealForm = createReactClass({
         let renderSettings= () => {
             if (isAdvanced) {
                 return(
-                    <div className="form-group">
+                    <div>
                         <div className="col-lg-3">
                             Carbohydrates <span className="pull-right"><strong>{carbohydrates}g</strong></span>
                             <Slider className="margin-top-sm" ref="carbohydrates" step={1} min={0} max={1000} defaultValue={carbohydrates} onAfterChange={this.changeSlider} />
@@ -88,17 +97,7 @@ const EditMealForm = createReactClass({
                 )
             }else {
                 return (
-                    <div className="form-group">
-                        <div className="col-lg-3">
-                            Carbohydrates <br/>
-                            <div className="btn-group" role="group">
-                                <button type="button" className="btn btn-default">Low</button>
-                                <button type="button" className="btn btn-default">Middle</button>
-                                <button type="button" className="btn btn-default">High</button>
-                            </div>
-                        </div>
-                        <div className="clearfix"></div>
-                    </div>
+                    <BasicForm onHandleBasicForm={this.handleBasicForm}/>
                 )
             }
         }
@@ -107,16 +106,24 @@ const EditMealForm = createReactClass({
             <div className="bg-white border-gray-hard border-radius-base">
                 <form onSubmit={this.onFormSubmit} className="edit-meal-form">
                     <div className="form-group">
-                        <div className="col-lg-8">
+                        <div className="col-lg-9">
                             <h3 className="margin-bottom-xl"><b>My Meal Planner</b></h3>
                         </div>
-                        <div className="col-lg-4 margin-top-lg">
-                            <input type="submit" value="Create New Meal" className="btn btn-primary pull-right" />
-                            <button className="btn-link pull-right" onClick={this.toggleAdvSettings}>{renderSettingsTrigger()}</button>
+                        <div className="col-lg-3 text-right">
+                            <button className="btn-link margin-top-xl" onClick={this.toggleAdvSettings}>{renderSettingsTrigger()}</button>
                         </div>
                         <div className="clearfix"></div>
                     </div>
-                    {renderSettings()}
+                    <div className="form-group">
+                        <div className="col-lg-10">
+                            <div className="row">{renderSettings()}</div>
+                        </div>
+                        <div className="col-lg-2">
+                            <br/>
+                            <input type="submit" value="Create New Meal" className="btn btn-primary pull-right" />
+                        </div>
+                        <div className="clearfix"></div>
+                    </div>
                     <div className="margin-bottom-xl" />
                 </form>
             </div>
