@@ -22,15 +22,17 @@ const BasicForm = createReactClass({
         return(
             <div>
                 <div className="col-lg-9">
-                    <label className="control-label">I would like to eat... </label>
+                    <label className="control-label">Options</label>
                     <div className="btn-toolbar">
                         <button type="button" className="btn btn-default">Anything</button>
                         <button type="button" className="btn btn-default">Vegan</button>
+                        <button type="button" className="btn btn-default">Paleo</button>
                         <button type="button" className="btn btn-default">Atkins</button>
                         <button type="button" className="btn btn-default">Pregnancy</button>
                         <button type="button" className="btn btn-default">Carb Cycling</button>
                         <button type="button" className="btn btn-default">High Protein</button>
                         <button type="button" className="btn btn-default">Low Fat</button>
+                        <button type="button" className="btn btn-default">Diabetes</button>
                     </div>
                 </div>
                 <div className="col-lg-3">

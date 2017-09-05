@@ -1,0 +1,151 @@
+.ReactModal__Body--open {
+  //  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  z-index: 9999;
+}
+
+@media (max-width: $screen-xs-max) {
+  .change-meal-modal-wrapper {
+    width: calc(100% - 32px);
+  }
+}
+
+.change-meal-modal-wrapper {
+  position: absolute;
+  background-color: #fff;
+  border-radius: $border-radius-base;
+  outline: none;
+}
+
+.change-meal-modal {
+  padding: 20px;
+  position: relative;
+  .change-meal-title {
+    font-size: 16px;
+    padding-bottom: 12px;
+    font-weight: 600;
+    color: $black-light;
+    border-bottom: 1px solid $gray-hard;
+    @media (max-width: $screen-xs-max) {
+      font-size: 12px;
+      text-align: center;
+      border: none;
+    }
+    & + div {
+      font-size: 10px;
+      img {
+        width: 20px;
+        height: 20px;
+        margin-left: 8px;
+      }
+    }
+  }
+  .customize-title {
+    color: $gray-harder;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .fa-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 14px;
+    color: $gray-harder;
+  }
+  h6 {
+    color: $black-lighter;
+    margin: 16px 0;
+  }
+  .meal-card-for-change {
+    display: flex;
+    width: 450px;
+    border: 1px solid $gray-harder;
+    border-radius: $border-radius-base;
+    padding: 5px;
+    position: relative;
+    margin-bottom: 16px;
+    .meal-img {
+      width: 90px;
+      height: 90px;
+      background-size: cover;
+      background-position: center;
+      background-color: $gray-light;
+      margin-right: 12px;
+      border-radius: $border-radius-base;
+    }
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: $black-light;
+      margin-bottom: 6px;
+      width: 200px;
+      & + p {
+        font-size: 10px;
+        color: $black-lighter;
+      }
+    }
+    .meal-creator-info {
+      position: absolute;
+      bottom: 0;
+      font-size: 12px;
+      padding-left: 32px;
+      img {
+        width: 26px;
+        height: 26px;
+        background-color: $gray-light;
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+      }
+    }
+    .meal-tags {
+      position: absolute;
+      right: 16px;
+      bottom: 4px;
+      i {
+        margin-left: 10px;
+      }
+    }
+  }
+  .slider-label {
+    margin-top: 10px;
+    font-size: 10px;
+    color: $black-light;
+    font-weight: 600;
+    padding-bottom: 30px;
+    border-bottom: 1px solid $gray-hard;
+    span {
+      margin: 0 14%;
+      display: block;
+      float: left;
+      text-align: center;
+      @media (max-width: $screen-xxs) {
+        margin: 0 12%;
+      }
+    }
+  }
+  .rc-slider-rail, .rc-slider-track {
+    background-color: $brand-primary;
+  }
+  .rc-slider-handle {
+    border-color: $brand-primary;
+  }
+  .meal-card-wrapper-xs {
+    border: none !important;
+  }
+  .meal-card-list {
+    display: block !important;
+    height: 400px;
+    @media (max-width: $screen-xxs) {
+      height: 220px;
+    }
+    overflow: auto;
+    padding: 0;
+    border: none !important;
+    :first-child {
+      margin-top: 0;
+    }
+  }
+}

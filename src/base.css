@@ -5655,15 +5655,15 @@ svg {
   .meal-card-wrapper > div:last-of-type {
     border-bottom: none; }
   .meal-card-wrapper .meal-cover {
-    height: 90px;
-    width: 90px;
+    height: 150px;
+    width: 150px;
     background-color: #E8E9ED;
     border-radius: 4px;
     float: left;
     background-size: cover;
     background-position: center; }
   .meal-card-wrapper .meal-description {
-    width: calc(100% - 180px); }
+    width: calc(100% - 350px); }
   .meal-card-wrapper a {
     color: #555555; }
   .meal-card-wrapper h4 span {
@@ -5678,7 +5678,7 @@ svg {
     .meal-card-wrapper h5 + p {
       line-height: 1; }
   .meal-card-wrapper .change-recipe {
-    font-size: 24px;
+    font-size: 14px;
     color: #979797;
     float: right;
     margin-top: 10px; }
@@ -6230,3 +6230,125 @@ svg {
       border-bottom: 2px solid #FFAB00; }
     .tab-bar ul a {
       display: block; }
+
+.ReactModal__Overlay {
+  z-index: 9999; }
+
+@media (max-width: 767px) {
+  .change-meal-modal-wrapper {
+    width: calc(100% - 32px); } }
+
+.change-meal-modal-wrapper {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 4px;
+  outline: none; }
+
+.change-meal-modal {
+  padding: 20px;
+  position: relative; }
+  .change-meal-modal .change-meal-title {
+    font-size: 16px;
+    padding-bottom: 12px;
+    font-weight: 600;
+    color: #555555;
+    border-bottom: 1px solid #E8E9ED; }
+    @media (max-width: 767px) {
+      .change-meal-modal .change-meal-title {
+        font-size: 12px;
+        text-align: center;
+        border: none; } }
+    .change-meal-modal .change-meal-title + div {
+      font-size: 10px; }
+      .change-meal-modal .change-meal-title + div img {
+        width: 20px;
+        height: 20px;
+        margin-left: 8px; }
+  .change-meal-modal .customize-title {
+    color: #CCCCCC;
+    font-size: 12px;
+    margin-top: 20px; }
+  .change-meal-modal .fa-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 14px;
+    color: #CCCCCC; }
+  .change-meal-modal h6 {
+    color: #979797;
+    margin: 16px 0; }
+  .change-meal-modal .meal-card-for-change {
+    display: flex;
+    width: 450px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 5px;
+    position: relative;
+    margin-bottom: 16px; }
+    .change-meal-modal .meal-card-for-change .meal-img {
+      width: 90px;
+      height: 90px;
+      background-size: cover;
+      background-position: center;
+      background-color: #F2F2F2;
+      margin-right: 12px;
+      border-radius: 4px; }
+    .change-meal-modal .meal-card-for-change h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #555555;
+      margin-bottom: 6px;
+      width: 200px; }
+      .change-meal-modal .meal-card-for-change h4 + p {
+        font-size: 10px;
+        color: #979797; }
+    .change-meal-modal .meal-card-for-change .meal-creator-info {
+      position: absolute;
+      bottom: 0;
+      font-size: 12px;
+      padding-left: 32px; }
+      .change-meal-modal .meal-card-for-change .meal-creator-info img {
+        width: 26px;
+        height: 26px;
+        background-color: #F2F2F2;
+        position: absolute;
+        bottom: 5px;
+        left: 0; }
+    .change-meal-modal .meal-card-for-change .meal-tags {
+      position: absolute;
+      right: 16px;
+      bottom: 4px; }
+      .change-meal-modal .meal-card-for-change .meal-tags i {
+        margin-left: 10px; }
+  .change-meal-modal .slider-label {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #555555;
+    font-weight: 600;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E8E9ED; }
+    .change-meal-modal .slider-label span {
+      margin: 0 14%;
+      display: block;
+      float: left;
+      text-align: center; }
+      @media (max-width: 320px) {
+        .change-meal-modal .slider-label span {
+          margin: 0 12%; } }
+  .change-meal-modal .rc-slider-rail, .change-meal-modal .rc-slider-track {
+    background-color: #FFAB00; }
+  .change-meal-modal .rc-slider-handle {
+    border-color: #FFAB00; }
+  .change-meal-modal .meal-card-wrapper-xs {
+    border: none !important; }
+  .change-meal-modal .meal-card-list {
+    display: block !important;
+    height: 400px;
+    overflow: auto;
+    padding: 0;
+    border: none !important; }
+    @media (max-width: 320px) {
+      .change-meal-modal .meal-card-list {
+        height: 220px; } }
+    .change-meal-modal .meal-card-list :first-child {
+      margin-top: 0; }

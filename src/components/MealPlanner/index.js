@@ -35,6 +35,9 @@ const MealPlanner = createReactClass({
         };
         this.props.substituteRecipe(substitutePlan);
     },
+    handleDayChange: function (e){
+        e.preventDefault()
+    },
     render: function () {
         const { isFetching, errorInFetch, errorMessage, substituteRecipeObj } = this.props;
         let renderError = () => {
@@ -50,7 +53,7 @@ const MealPlanner = createReactClass({
                 return Object.keys(nutrients).map(function (key, i) {
                     return <div className="label-pair" key={i}>
                         <span className="text-light-black">{key}</span>
-                        <span className="text-light-black">{nutrients[key].toFixed(2)}</span>
+                        <span className="text-light-black">{nutrients[key].toFixed(0)}</span>
                     </div>;
                 })
             }
@@ -66,6 +69,14 @@ const MealPlanner = createReactClass({
                 })
             }
         }
+        let renderDate = () => {
+            let objDate = new Date(),
+                locale = "en-us",
+                day = objDate.toLocaleString(locale, {day: "numeric"}),
+                month = objDate.toLocaleString(locale, { month: "short" });
+                return <span>{`${month} ${day}th`}</span>
+        }
+
         let renderFetching = () => {
             if (isFetching && !errorInFetch) {
                 return <div className="h4 text-primary">Fetching Your Meal Plan</div>
@@ -81,26 +92,38 @@ const MealPlanner = createReactClass({
                 </div>
                 <LoadingIndicator isLoading={isFetching}>
                     {
-                        <div className="row">
-                            <div className="col col-lg-9 margin-top-md">
-                                <div id="daily-meal-plan" className="bg-white border-gray-hard border-radius-base">
-                                    {renderError()}
-                                    {renderFetching()}
-                                    {renderMeals()}
-                                    <div className="clearfix"></div>
+                        <div>
+                            <div className="row">
+                                <div className="col-xs-12 text-primary text-center">
+                                    <p className="h4 margin-top-md">
+                                        <button className="btn btn-link" onClick={this.handleDayChange}><i className="fa fa-chevron-left text-primary"></i></button>
+                                        <i className="fa fa-calendar"></i> {renderDate()} Plan
+                                        <button className="btn btn-link" onClick={this.handleDayChange}><i className="fa fa-chevron-right text-primary"></i></button>
+                                    </p>
                                 </div>
                             </div>
-                            <div className="col-lg-3 margin-top-md stats-info margin-bottom-xl">
-                                <div className="bg-white border-gray-hard border-radius-base padding-left-right">
-                                    <h3 className="text-light-black block-header margin-bottom-lg">
-                                        <b>Total Nutrients</b>
-                                    </h3>
-                                    <hr />
-                                    {renderNutrients()}
-                                    <div className="clearfix margin-bottom-xl" />
+                            <div className="row">
+                                <div className="col-lg-9">
+                                    <div id="daily-meal-plan" className="bg-white border-gray-hard border-radius-base">
+                                        {renderError()}
+                                        {renderFetching()}
+                                        {renderMeals()}
+                                        <div className="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div className="col-lg-3 margin-top-md stats-info margin-bottom-xl">
+                                    <div className="bg-white border-gray-hard border-radius-base padding-left-right">
+                                        <h3 className="text-light-black block-header margin-bottom-lg">
+                                            <b>Total Nutrients</b>
+                                        </h3>
+                                        <hr />
+                                        {renderNutrients()}
+                                        <div className="clearfix margin-bottom-xl" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     }
                 </LoadingIndicator>
 

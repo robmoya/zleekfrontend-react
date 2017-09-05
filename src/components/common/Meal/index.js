@@ -17,7 +17,7 @@ const Meal = createReactClass( {
 
         let renderNutrients = () => {
             return Object.keys(nutrients).map(function(key, i) {
-                return <small key={i}>{key}: {nutrients[key].toFixed(2)} &nbsp;</small>;
+                return <small key={i}>{key}: {nutrients[key].toFixed(0)} &nbsp;</small>;
             })
         }
         let renderRecipes = () => {
@@ -30,8 +30,8 @@ const Meal = createReactClass( {
         return(
             <div className="col-xs-12">
                 <div className="meal-card-container">
-                    <h3 className="margin-bottom-none">Meal</h3>
-                    <p className="margin-bottom-lg">{renderNutrients()}</p>
+                    {/*<h3 className="margin-bottom-none">Meal</h3>*/}
+                    <p className="text-right text-info margin-top-md">{renderNutrients()}</p>
                     <div className="meal-card-wrapper">
                         {renderRecipes()}
                     </div>
