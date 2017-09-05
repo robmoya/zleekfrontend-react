@@ -125,8 +125,8 @@
     border-bottom: none;
   }
   .meal-cover {
-    height: 90px;
-    width: 90px;
+    height: 150px;
+    width: 150px;
     background-color: $gray-hard;
     border-radius: $border-radius-base;
     float: left;
@@ -134,7 +134,7 @@
     background-position: center;
   }
   .meal-description {
-    width: calc(100% - 180px);
+    width: calc(100% - 350px);
   }
   a {
     color: $black-light;
@@ -156,7 +156,7 @@
     }
   }
   .change-recipe {
-    font-size: 24px;
+    font-size: $font-size-base;
     color: $black-lighter;
     float: right;
     margin-top: 10px;

@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import './index.css';
 
+const Range = Slider.Range;
+
+
 const EditMealForm = createReactClass({
     componentWillMount: function () {
         let buildPlan = initialState.mealPlanner;
@@ -39,6 +42,7 @@ const EditMealForm = createReactClass({
         this.setState({ buildPlan })
         return buildPlan;
     },
+
     onFormSubmit: function (e) {
         e.preventDefault();
         if (this.state.isAdvanced) {
@@ -91,6 +95,11 @@ const EditMealForm = createReactClass({
                         <div className="col-lg-3">
                             Calories <span className="pull-right"><strong>{calories}kal</strong></span>
                             <Slider className="margin-top-sm" ref="calories" step={1} min={0} max={8000} defaultValue={calories} onAfterChange={this.changeSlider} />
+                        </div>
+                        <div className="col-lg-12">
+                            <br/>
+                            Percentages
+                            <Range count={3} defaultValue={[20, 40, 60, 80]} pushable />
                         </div>
                         <div className="clearfix"></div>
                     </div>

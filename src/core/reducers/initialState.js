@@ -4,6 +4,7 @@ export default {
         isFetching: true,
         isAdvanced: false,
         errorInFetch: null,
+        isChangeRecipeModalOpen: false,
         buildPlan:{
           "numberOfDays": 1,
           "profile": {

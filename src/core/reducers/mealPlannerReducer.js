@@ -68,8 +68,15 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
             });
             break;
         }
+        case types.CHANGE_RECIPE_MODAL_OPEN:
+            return Object.assign({}, state, { isChangeRecipeModalOpen: true });
+
+        case types.CHANGE_RECIPE_MODAL_CLOSE:
+            return Object.assign({}, state, { isChangeRecipeModalOpen: false });
+
         default: break
     }
+
     return state
 }
 
