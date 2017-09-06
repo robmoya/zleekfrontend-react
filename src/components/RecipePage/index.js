@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import createReactClass from 'create-react-class';
-import { Link } from 'react-router-dom';
-import Rating from '../common/Rating';
+// import { Link } from 'react-router-dom';
+// import Rating from '../common/Rating';
 
 const RecipePage = createReactClass({
     componentWillMount: function () {
@@ -26,7 +26,33 @@ const RecipePage = createReactClass({
         });
     },
     render: function () {
-        const rating = 5;
+        // const rating = 5;
+        // console.log(this.props);
+        const {name, directions, ingredients, nutrients } = this.props.location.state.recipe;
+        // console.log(name, directions, ingredients, nutrients);
+
+        let renderDirections = () => {
+            return directions.map((direction, i) => {
+                return <div key={i} className="cooking-step">
+                            <div className="step-number">
+                                <span>{i+1}</span>
+                            </div>
+                            <div className="step-description">
+                                {direction}
+                                <div className="bg-size-cover recipe-image" style={{ backgroundImage: 'url(http://op9ls46e5.bkt.gdipper.com/meal_plan2.jpg)' }}></div>
+                            </div>
+                        </div>
+            });
+        }
+
+        let renderIngredients = () => {
+            return ingredients.map((ingredient, i) => {
+                return <li key={i}>{ingredient.name} <i className="fa fa-random text-dark-gray margin-left-xs"></i></li>
+            });
+        }
+
+        // console.log(this.props.history);
+
         return (
             <div className="bg-gray-light recipe-page">
                 <div className="bg-white">
@@ -34,27 +60,29 @@ const RecipePage = createReactClass({
                         <div className="row">
                             <div className="col-xs-12 recipe-header">
                                 <div>
-                                    <h1><i className="fa fa-cutlery margin-right-sm"></i>Banna Bread</h1>
-                                    <Rating value={rating} />
-                                    <span className="margin-left-xs text-light-black">3,212 Reviews</span>
-                                    <div className="recipe-creator-info">
-                                        <img className="border-radius-circle" alt="" src="https://res.cloudinary.com/turquoise-software/image/upload/c_fill,g_face,h_220,w_200/v1471623391/profile-kim_jf4egz.jpg" />
-                                        <div>
-                                            <p>Recipe by: Emilia Clarke</p>
-                                            <p>
-                                                <span className="margin-right-lg">
-                                                    <i className="fa fa-user margin-right-xs"></i>
-                                                    15M</span>
-                                                <span className="margin-right-lg">
-                                                    <i className="fa fa-cutlery margin-right-xs"></i>
-                                                    15</span>
-                                                <span className="margin-right-lg">
-                                                    <i className="fa fa-cutlery margin-right-xs"></i>
-                                                    4</span>
-                                            </p>
+
+                                    <h1><i className="fa fa-chevron-left margin-right-sm" onClick={this.props.history.goBack}></i>{name}</h1>
+                                    {/*<span className="margin-left-xs text-light-black">3,212 Reviews</span>*/}
+                                    {/*
+                                        <div className="recipe-creator-info">
+                                            <img className="border-radius-circle" alt="" src="https://res.cloudinary.com/turquoise-software/image/upload/c_fill,g_face,h_220,w_200/v1471623391/profile-kim_jf4egz.jpg" />
+                                            <div>
+                                                <p>Recipe by: Emilia Clarke</p>
+                                                <p>
+                                                    <span className="margin-right-lg">
+                                                        <i className="fa fa-user margin-right-xs"></i>
+                                                        15M</span>
+                                                    <span className="margin-right-lg">
+                                                        <i className="fa fa-cutlery margin-right-xs"></i>
+                                                        15</span>
+                                                    <span className="margin-right-lg">
+                                                        <i className="fa fa-cutlery margin-right-xs"></i>
+                                                        4</span>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="button" className="btn btn-blue-transparent btn-sm">Order Now</button>
+                                        <button type="button" className="btn btn-blue-transparent btn-sm">Order Now</button>
+                                        */}
                                 </div>
                             </div>
                         </div>
@@ -83,22 +111,22 @@ const RecipePage = createReactClass({
                                                             <hr className="margin-top-none" />
                                                             <div className="label-pair">
                                                                 <span className="text-light-black">Carbs</span>
-                                                                <span className="text-light-black">24g</span>
+                                                                <span className="text-light-black">{nutrients.carbohydrates.toFixed(0)}g</span>
                                                             </div>
                                                             <div className="label-pair">
                                                                 <span className="text-light-black">Protein</span>
-                                                                <span className="text-light-black">8g</span>
+                                                                <span className="text-light-black">{nutrients.protein.toFixed(0)}g</span>
                                                             </div>
                                                             <div className="label-pair">
                                                                 <span className="text-light-black">Fat</span>
-                                                                <span className="text-light-black">4g</span>
+                                                                <span className="text-light-black">{nutrients.fat.toFixed(0)}g</span>
                                                             </div>
                                                             <div className="label-pair">
                                                                 <span className="text-light-black">Calories</span>
-                                                                <span className="text-light-black">300</span>
+                                                                <span className="text-light-black">{nutrients.calories.toFixed(0)}</span>
                                                             </div>
                                                             <hr />
-                                                            <Link to="#" id="nutrition-detail" className="text-primary">Detailed Nutrition</Link>
+                                                            {/*<Link to="#" id="nutrition-detail" className="text-primary">Detailed Nutrition</Link>*/}
                                                         </div>
                                                     }
                                                 </div>
@@ -106,65 +134,27 @@ const RecipePage = createReactClass({
                                             <div className="col-xs-12 margin-top-sm ingredients-info margin-bottom-sm">
                                                 <div className="bg-white border-gray-hard border-radius-base padding-left-right">
                                                     <h3 className="text-light-black block-header">
-                                                        <b>15 Ingredients</b>
+                                                        <b>{ingredients.length} Ingredients</b>
                                                         <span className="block-arrow" onClick={this.openIngredientsBlock}>
                                                             {this.state.ingredientsBlockStatus === true ? <i className="fa fa-chevron-up"></i> : <i className="fa fa-chevron-down"></i>}
                                                         </span>
                                                     </h3>
-                                                    {this.state.ingredientsBlockStatus === true &&
-                                                        <div>
-                                                            <span className="small margin-right-sm text-dark-gray">
-                                                                <i className="fa fa-pie-chart margin-right-xs"></i>
-                                                                1 Serving
-                                                            </span>
-                                                            <span className="small margin-right-sm text-dark-gray">
-                                                                <i className="fa fa-bar-chart margin-right-xs"></i>
-                                                                300 cal
-                                                            </span>
-                                                            <div className="ingredients-list text-light-black margin-top-md">
-                                                                <ul className="ingredients-ul">
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square-o margin-right-md text-dark-gray"></i>
-                                                                        3 very bananas
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square margin-right-md text-info"></i>
-                                                                        4 Organic Free Range Eggs
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square-o margin-right-md text-dark-gray"></i>
-                                                                        8 Dates
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square margin-right-md text-info"></i>
-                                                                        2 Tablespoons melted coconut
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square-o margin-right-md text-dark-gray"></i>
-                                                                        2 large teaspoon Vanilla Paste
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square-o margin-right-md text-dark-gray"></i>
-                                                                        1 tbsp, raisins
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i className="fa fa-plus-square-o margin-right-md text-dark-gray"></i>
-                                                                        2tbsp, cinnamon
-                                                                        <i className="fa fa-random text-dark-gray margin-left-xs"></i>
-                                                                    </li>
-                                                                </ul>
-                                                                <div className="padding-left-right-small">
-                                                                    <button className="btn btn-gray-light-transparent text-uppercase btn-block btn-lg font-small">Order all Ingredients</button>
+
+                                                        {this.state.ingredientsBlockStatus === true &&
+                                                            <div>
+                                                                <div className="ingredients-list text-light-black margin-top-md">
+                                                                    <ul className="ingredients-ul">
+                                                                        {renderIngredients()}
+                                                                    </ul>
+                                                                    {/*
+                                                                        <div className="padding-left-right-small">
+                                                                            <button className="btn btn-gray-light-transparent text-uppercase btn-block btn-lg font-small">Order all Ingredients</button>
+                                                                        </div>
+                                                                        */}
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    }
+                                                        }
+
                                                 </div>
                                             </div>
                                         </div>
@@ -185,59 +175,43 @@ const RecipePage = createReactClass({
                                                         <h2 className="text-light-black">
                                                             <b>Directions</b>
                                                         </h2>
-                                                        <div className="cooking-timer">
-                                                            <i className="fa fa-clock-o"></i>
-                                                            <div>
-                                                                <span>Prep</span>
-                                                                <br />
-                                                                50 m
+                                                        {/*
+                                                            <div className="cooking-timer">
+                                                                <i className="fa fa-clock-o"></i>
+                                                                <div>
+                                                                    <span>Prep</span>
+                                                                    <br />
+                                                                    50 m
+                                                                </div>
+                                                                <div>
+                                                                    <span>Cook</span>
+                                                                    <br />
+                                                                    10 m
+                                                                </div>
+                                                                <div>
+                                                                    <span>Ready in</span>
+                                                                    <br />
+                                                                    1 hr
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                <span>Cook</span>
-                                                                <br />
-                                                                10 m
+                                                            <div className="recipe-actions">
+                                                                <span>
+                                                                    <i className="fa fa-download"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i className="fa fa-share-alt"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i className="fa fa-print"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i className="fa fa-heart-o"></i>
+                                                                </span>
                                                             </div>
-                                                            <div>
-                                                                <span>Ready in</span>
-                                                                <br />
-                                                                1 hr
-                                                            </div>
-                                                        </div>
-                                                        <div className="recipe-actions">
-                                                            <span>
-                                                                <i className="fa fa-download"></i>
-                                                            </span>
-                                                            <span>
-                                                                <i className="fa fa-share-alt"></i>
-                                                            </span>
-                                                            <span>
-                                                                <i className="fa fa-print"></i>
-                                                            </span>
-                                                            <span>
-                                                                <i className="fa fa-heart-o"></i>
-                                                            </span>
-                                                        </div>
+                                                            */}
+                                                            {renderDirections()}
                                                     </div>
-                                                    <div className="cooking-step">
-                                                        <div className="step-number">
-                                                            <span>1</span>
-                                                        </div>
-                                                        <div>
-                                                            Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.
-                                                        Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.
-                                                            <div className="bg-size-cover recipe-image" style={{ backgroundImage: 'url(http://op9ls46e5.bkt.gdipper.com/meal_plan2.jpg)' }}></div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="cooking-step">
-                                                        <div className="step-number">
-                                                            <span>2</span>
-                                                        </div>
-                                                        <div>
-                                                            Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.
-                                                        Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.Place Gorgonzola cheese into bowl. Add butter.
-                                                            <div className="bg-size-cover recipe-image" style={{ backgroundImage: 'url(http://op9ls46e5.bkt.gdipper.com/meal_plan2.jpg)' }}></div>
-                                                        </div>
-                                                    </div>
+
                                                     <br /><br />
                                                 </div>
                                             </div>

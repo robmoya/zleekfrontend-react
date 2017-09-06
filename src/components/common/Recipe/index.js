@@ -66,7 +66,10 @@ const Recipe = createReactClass({
                 <div className="bg-size-cover meal-cover" style={mealBgStyle}>
                 </div>
                 <div className="pull-left margin-left-sm meal-description">
-                    <Link to={`/recipes/${recipeId}/default`} className="recipe-bg clickable h4">
+                    <Link to={{
+                        pathname: `/recipes/${recipeId}`,
+                        state: { recipe: recipe }
+                    }} className="recipe-bg clickable h4">
                         {name}
                     </Link>
                     {/*
