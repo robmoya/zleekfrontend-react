@@ -26,7 +26,7 @@ ReactDOM.render(
         <Router history={history}>
             <App>
                 <Route exact path="/" component={MvpPage} />
-                <Route path="/recipes/:id/default" component={RecipePage} />
+                <Route path="/recipes/:id" component={RecipePage} />
                 <Route path="/mealplanner" component={MealPlanner} />
             </App>
         </Router>
