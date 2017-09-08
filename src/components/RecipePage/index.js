@@ -28,7 +28,8 @@ const RecipePage = createReactClass({
     render: function () {
         // const rating = 5;
         // console.log(this.props);
-        const {name, directions, ingredients, nutrients } = this.props.location.state.recipe;
+        console.log(this.props.location.state.recipe);
+        const {name, directions, ingredients, nutrients, img } = this.props.location.state.recipe;
         // console.log(name, directions, ingredients, nutrients);
 
         let renderDirections = () => {
@@ -83,6 +84,16 @@ const RecipePage = createReactClass({
                                         </div>
                                         <button type="button" className="btn btn-blue-transparent btn-sm">Order Now</button>
                                         */}
+                                </div>
+                                <div className="recipe-recommendations">
+                                    <div className="bg-size-cover border-radius-base" style={{ backgroundImage: `url(${img})` }}>
+                                        {/*
+                                            <div className="border-radius-base">
+                                                <img className="bg-size-cover border-radius-circle" src="https://res.cloudinary.com/turquoise-software/image/upload/c_fill,g_face,h_220,w_200/v1471616929/167806443_bodnga.jpg" />
+                                                <span>Michelle Obama<br />this</span>
+                                            </div>
+                                            */}
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -110,23 +110,24 @@
 
 //meal plan card
 .meal-card-container {
-  margin-bottom: 12px;
+  margin-bottom: 42px;
 }
 
 .meal-card-wrapper {
   border-radius: $border-radius-base;
   border: 1px solid $gray-hard;
+  margin-bottom: 10px;
   >div {
     position: relative;
-    padding: $padding-base/2 $padding-base*2 $padding-base/2 $padding-base/2;
+    padding: $padding-base;
     border-bottom: 1px solid $gray-hard;
   }
   >div:last-of-type {
     border-bottom: none;
   }
   .meal-cover {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 160px;
     background-color: $gray-hard;
     border-radius: $border-radius-base;
     float: left;
@@ -135,6 +136,10 @@
   }
   .meal-description {
     width: calc(100% - 350px);
+    .recipe-cal {
+      position: absolute;
+      bottom: -6px;
+    }
   }
   a {
     color: $black-light;
@@ -158,8 +163,9 @@
   .change-recipe {
     font-size: $font-size-base;
     color: $black-lighter;
-    float: right;
-    margin-top: 10px;
+    position: absolute;
+    right: $padding-base*2;
+    top: $padding-base;
   }
   .meal-creator {
     color: lighten($black-light, 20%);
@@ -176,9 +182,7 @@
     }
   }
   button {
-    position: absolute;
-    right: $padding-base*2;
-    top: $padding-base*2;
+    width: 124px;
   }
   .meal-tags {
     position: absolute;

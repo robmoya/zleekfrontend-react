@@ -1,47 +1,46 @@
-import React from  'react';
+import React from 'react';
 import createReactClass from 'create-react-class';
 import initialState from '../../../../core/reducers/initialState';
+import './index.css';
 
 
 const BasicForm = createReactClass({
-    componentWillMount: function(){
-        this.setState({mealsPerDay: initialState.mealPlanner.buildPlan.profile.mealsPerDay});
+    componentWillMount: function () {
+        this.setState({ mealsPerDay: initialState.mealPlanner.profile.mealsPerDay });
     },
-    componentDidMount: function(){
+    componentDidMount: function () {
     },
-    handleBasicForm: function(e){
+    changeMealsPerDay: function (e) {
         let mealsPerDay = Number(e.target.value);
-
-        let basicBuildPlan = {
-            mealsPerDay: mealsPerDay
+        this.setState({ mealsPerDay: mealsPerDay });
+    },
+    handleBasicForm: function (e) {
+        const basicBuildPlan = {
+            mealsPerDay: this.state.mealsPerDay
         }
-        this.setState({mealsPerDay: mealsPerDay});
         this.props.onHandleBasicForm(basicBuildPlan);
     },
-    render: function (){
-        return(
+    render: function () {
+        return (
             <div>
-                <div className="col-lg-9">
-                    <label className="control-label">Options</label>
-                    <div className="btn-toolbar">
-                        <button type="button" className="btn btn-default">Anything</button>
-                        <button type="button" className="btn btn-default">Vegan</button>
-                        <button type="button" className="btn btn-default">Paleo</button>
-                        <button type="button" className="btn btn-default">Atkins</button>
-                        <button type="button" className="btn btn-default">Pregnancy</button>
-                        <button type="button" className="btn btn-default">Carb Cycling</button>
-                        <button type="button" className="btn btn-default">High Protein</button>
-                        <button type="button" className="btn btn-default">Low Fat</button>
-                        <button type="button" className="btn btn-default">Diabetes</button>
+                <div className="col-xs-12 form-inline">
+                    <div className="form-group margin-right-xl">
+                        <label className="control-label">Meals Calorie/Day:</label>
+                        <input className="form-control margin-left-sm" value="1800" />
                     </div>
-                </div>
-                <div className="col-lg-3">
-                    <label className="control-label">Meals Per Day</label>
-                    <select className="form-control" value={this.state.mealsPerDay} onChange={this.handleBasicForm}>
-                        <option value="1">1 meal</option>
-                        <option value="2">2 meals</option>
-                        <option value="3">3 meals</option>
-                    </select>
+                    <div className="form-group">
+                        <label className="control-label">I would like to eat:</label>
+                        <select className="form-control margin-left-sm" defaultValue={this.state.mealsPerDay} onChange={this.changeMealsPerDay}>
+                            <option value="1">1 meal</option>
+                            <option value="2">2 meals</option>
+                            <option value="3">3 meals</option>
+                            <option value="4">4 meals</option>
+                            <option value="5">5 meals</option>
+                            <option value="6">6 meals</option>
+                            <option value="7">7 meals</option>
+                            <option value="8">8 meals</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="clearfix"></div>
             </div>

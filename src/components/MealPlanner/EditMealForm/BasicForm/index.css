@@ -1,0 +1,11 @@
+.meal-tag-list {
+    padding: 12px 15px;
+}
+
+.meal-tag-list button {
+    margin-right: 10px;
+}
+
+.edit-meal-form .form-control {
+    width: 115px !important;
+}

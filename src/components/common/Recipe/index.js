@@ -22,9 +22,8 @@ const Recipe = createReactClass({
     },
     render: function () {
         let recipe = this.props.recipe;
-        const { isChangeRecipeModalOpen } = this.props;
 
-        const { mealMarkerId, recipeMarkerId, substituteRecipe } = this.props;
+        const { mealMarkerId, recipeMarkerId, substituteRecipe, isChangeRecipeModalOpen } = this.props;
 
         if (mealMarkerId === substituteRecipe.meal && recipeMarkerId === substituteRecipe.recipe && !substituteRecipe.isFetching) {
             recipe = substituteRecipe.recipePlan;
@@ -33,7 +32,7 @@ const Recipe = createReactClass({
         const isChangingRecipe = mealMarkerId === substituteRecipe.meal && recipeMarkerId === substituteRecipe.recipe && substituteRecipe.isFetching;
 
         // const { recipeId, name, directions, ingredients, nutrients } = recipe;
-        const { recipeId, name } = recipe;
+        const { recipeId, name, img } = recipe;
 
         // let renderNutrients = () => {
         //     return Object.keys(nutrients).map(function (key, i) {
@@ -53,39 +52,45 @@ const Recipe = createReactClass({
         //     }).join('').substring(0, 80);
         // }
 
-        const bgUrl = 'url(http://op9ls46e5.bkt.gdipper.com/recipe_' + this.getRandom(1, 30).toFixed(0) + '.jpg)';
 
-        const mealBgStyle = {
-            backgroundImage: bgUrl
-        };
+        // const mealBgStyle = {
+        //     backgroundImage: `url(${img})`
+        // };
 
         return (
-            <div>
-                <ChangeRecipe modalIsOpen={isChangeRecipeModalOpen} />
+            <div className="meal-card-wrapper">
+                <div>
+                    <ChangeRecipe modalIsOpen={isChangeRecipeModalOpen} />
 
-                <div className="bg-size-cover meal-cover" style={mealBgStyle}>
-                </div>
-                <div className="pull-left margin-left-sm meal-description">
-                    <Link to={{
-                        pathname: `/recipes/${recipeId}`,
-                        state: { recipe: recipe }
-                    }} className="recipe-bg clickable h4">
-                        {name}
-                    </Link>
-                    {/*
+                    <div className="bg-size-cover meal-cover" style={{ backgroundImage: `url(${img})` }}>
+                    </div>
+                    <div className="pull-left margin-left-sm meal-description">
+                        <Link to={{
+                            pathname: `/recipes/${recipeId}`,
+                            state: { recipe: recipe }
+                        }} className="recipe-bg clickable h4">
+                            {name}
+                        </Link>
+                        <p className="text-lighter-black recipe-cal"><small>{recipe.nutrients.calories.toFixed(2)}</small> calories</p>
+                        {/*
                         <h5>{renderIngredients()}...<span className="text-primary">See More</span></h5>
                         <p className="margin-bottom-none">{renderNutrients()}</p>
                         <p className="hidden">{renderDirections()}</p>
                         */}
+                    </div>
+
+                    <div className="change-recipe">
+                        <button className="btn btn-primary" onClick={this.openChangeRecipeModal}>Similar Options</button>
+                        <br />
+                        <button className="btn btn-black-lighter-transparent margin-top-sm" onClick={this.changeRecipe}>
+                            {isChangingRecipe ?
+                                <span>Fetching<i className="fa fa-circle-o-notch fa-spin fa-fw margin-left-xs"></i></span> :
+                                <span>Random<i className="fa fa-random margin-left-xs"></i></span>
+                            }
+                        </button>
+                    </div>
+                    <div className="clearfix"></div>
                 </div>
-                {isChangingRecipe ?
-                    <span><span className="fa fa-circle-o-notch fa-spin fa-fw change-recipe"></span>Fetching</span> :
-                    <span className="change-recipe">Other food options <span className="fa fa-random cursor-pointer" onClick={this.changeRecipe}></span></span>
-                }
-
-                <button onClick={this.openChangeRecipeModal}>Change</button>
-
-                <div className="clearfix"></div>
             </div>
         )
     }
