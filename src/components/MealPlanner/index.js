@@ -12,37 +12,35 @@ import LoadingIndicator from '../common/LoadingIndicator';
 
 const MealPlanner = createReactClass({
     componentWillMount: function () {
-        this.props.onMount();
+        let buildPlan = {
+            "numberOfDays": 1,
+            "profile": initialState.mealPlanner.profile
+        }
+        this.props.onMount(buildPlan);
     },
     handleRecipeChange: function (marker) {
-        let {calories, protein, fat, carbohydrates} = this.props.dayPlans[0].nutrients;
+        // let { calories, protein, fat, carbohydrates } = this.props.dayPlans[0].nutrients;
 
         let substitutePlan = {
             "profile": {
-                ...initialState.mealPlanner.substituteRecipe.profile,
-                "nutrientsPerDay": {
-                    "carbohydrates": carbohydrates,
-                    "fat": fat,
-                    "protein": protein,
-                    "calories":calories
-                }
+                ...initialState.mealPlanner.profile,
             },
             "descriptor": this.props.descriptor,
             "marker": {
                 ...marker,
-                day:0
+                day: 0
             }
         };
         this.props.substituteRecipe(substitutePlan);
     },
-    handleDayChange: function (e){
+    handleDayChange: function (e) {
         e.preventDefault()
     },
     render: function () {
         const { isFetching, errorInFetch, errorMessage, substituteRecipeObj } = this.props;
         let renderError = () => {
             if (errorInFetch) {
-                return <div className="h4 text-primary">{errorMessage}</div>
+                return <div className="h4 text-danger">{errorMessage}</div>
             }
         }
 
@@ -72,15 +70,9 @@ const MealPlanner = createReactClass({
         let renderDate = () => {
             let objDate = new Date(),
                 locale = "en-us",
-                day = objDate.toLocaleString(locale, {day: "numeric"}),
+                day = objDate.toLocaleString(locale, { day: "numeric" }),
                 month = objDate.toLocaleString(locale, { month: "short" });
-                return <span>{`${month} ${day}th`}</span>
-        }
-
-        let renderFetching = () => {
-            if (isFetching && !errorInFetch) {
-                return <div className="h4 text-primary">Fetching Your Meal Plan</div>
-            }
+            return <span>{`${month} ${day}th`}</span>
         }
 
         return (
@@ -94,24 +86,36 @@ const MealPlanner = createReactClass({
                     {
                         <div>
                             <div className="row">
-                                <div className="col-xs-12 text-primary text-center">
-                                    <p className="h4 margin-top-md">
-                                        <button className="btn btn-link" onClick={this.handleDayChange}><i className="fa fa-chevron-left text-primary"></i></button>
-                                        <i className="fa fa-calendar"></i> {renderDate()} Plan
-                                        <button className="btn btn-link" onClick={this.handleDayChange}><i className="fa fa-chevron-right text-primary"></i></button>
-                                    </p>
+                                <div className="col-xs-12 margin-top-md margin-bottom-md">
+                                    <div className="bg-white border-gray-hard border-radius-base">
+                                        <div className="row">
+                                            <div className="col-lg-4 text-center">
+                                                <button className="btn btn-link btn-block" onClick={this.handleDayChange}>
+                                                    <i className="fa fa-chevron-left text-light-black"></i>
+                                                </button>
+                                            </div>
+                                            <div className="col-lg-4 text-center border-gray-hard-left">
+                                                <button className="btn btn-link text-decoration-none">
+                                                    <span className="text-light-black">
+                                                        <i className="fa fa-calendar"></i> {renderDate()} Plan
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div className="col-lg-4 text-center border-gray-hard-left">
+                                                <button className="btn btn-link btn-block" onClick={this.handleDayChange}>
+                                                    <i className="fa fa-chevron-right text-light-black"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-lg-9">
-                                    <div id="daily-meal-plan" className="bg-white border-gray-hard border-radius-base">
-                                        {renderError()}
-                                        {renderFetching()}
-                                        {renderMeals()}
-                                        <div className="clearfix"></div>
-                                    </div>
+                                    {renderError()}
+                                    {renderMeals()}
                                 </div>
-                                <div className="col-lg-3 margin-top-md stats-info margin-bottom-xl">
+                                <div className="col-lg-3 stats-info margin-bottom-xl">
                                     <div className="bg-white border-gray-hard border-radius-base padding-left-right">
                                         <h3 className="text-light-black block-header margin-bottom-lg">
                                             <b>Total Nutrients</b>
@@ -135,7 +139,7 @@ const MealPlanner = createReactClass({
 MealPlanner.propTypes = {
     onMount: PropTypes.func,
     isFetching: PropTypes.bool.isRequired,
-    buildPlan: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -145,14 +149,14 @@ const mapStateToProps = (state) => {
         errorMessage: state.mealPlanner.errorMessage,
         descriptor: state.mealPlanner.descriptor,
         dayPlans: state.mealPlanner.dayPlans,
-        buildPlan: state.mealPlanner.buildPlan,
+        profile: state.mealPlanner.profile,
         substituteRecipeObj: state.mealPlanner.substituteRecipe
     };
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        onMount: () => {
-            dispatch(actions.fetchDayPlan(initialState.mealPlanner.buildPlan));
+        onMount: (buildPlan) => {
+            dispatch(actions.fetchDayPlan(buildPlan));
         },
         substituteRecipe: (subRecipe) => {
             dispatch(actions.substituteRecipe(subRecipe))

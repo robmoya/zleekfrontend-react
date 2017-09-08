@@ -3,6 +3,7 @@ import ZleekApi from '../../api/zleekApi';
 
 export function fetchDayPlan(payload) {
     payload.fn = 'buildPlan';
+    console.dir(payload);
     return function (dispatch) {
         dispatch({
             type: types.FETCH_DAY_PLAN
@@ -35,24 +36,26 @@ export function receiveDayPlan(payload) {
 
 export function substituteRecipe(payload) {
     payload.fn = 'substituteRecipe';
+    console.dir(payload);
+
     return function (dispatch) {
         dispatch({
-            type: types.FETCH_SUBSTITUTE_RECIPE,
-            payload: payload
+            type: types.FETCH_SUBSTITUTE_RECIPE
         });
         ZleekApi.getMealPlan(payload).then((data) => {
             if (data.err) {
                 dispatch(fetchDayPlanError(data.err));
             } else {
-                const recipePlan = data.dayPlans[payload.marker.day].mealPlans[payload.marker.meal].recipePlans[payload.marker.recipe];
-                dispatch({
-                    type: types.RECEIVE_SUBSTITUTE_RECIPE,
-                    payload: {
-                        marker: { ...payload.marker },
-                        dayPlans: data.dayPlans[0],
-                        recipePlan: recipePlan
-                    }
-                });
+                console.log(data);
+        //         // const recipePlan = data.dayPlans[payload.marker.day].mealPlans[payload.marker.meal].recipePlans[payload.marker.recipe];
+        //         // dispatch({
+        //         //     type: types.RECEIVE_SUBSTITUTE_RECIPE,
+        //         //     payload: {
+        //         //         marker: { ...payload.marker },
+        //         //         dayPlans: data.dayPlans[0],
+        //         //         recipePlan: recipePlan
+        //         //     }
+        //         // });
             }
         }).catch((err) => {
             dispatch(fetchDayPlanError(err))

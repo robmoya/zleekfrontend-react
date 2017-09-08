@@ -20,6 +20,18 @@
   }
 }
 
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+.text-light-black {
+  color: $text-light-black;
+}
+
+.text-lighter-black {
+  color: $black-lighter;
+}
+
 // padding
 
 .padding-none {
@@ -97,6 +109,14 @@
 
 .border-gray-hard {
   border: 1px solid $gray-hard;
+}
+
+.border-gray-hard-top {
+  border-top: 1px solid $gray-hard;
+}
+
+.border-gray-hard-left {
+  border-left: 1px solid $gray-hard;
 }
 
 //cursor

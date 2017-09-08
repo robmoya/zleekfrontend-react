@@ -5,13 +5,11 @@ export default {
         isAdvanced: false,
         errorInFetch: null,
         isChangeRecipeModalOpen: false,
-        buildPlan:{
-          "numberOfDays": 1,
-          "profile": {
+        profile: {
             "nutrientsPerDay": {
-              "carbohydrates": 202,
-              "fat": 50,
-              "protein": 135,
+              "carbohydrates": 0.25,
+              "fat": 0.25,
+              "protein": 0.5,
               "calories": 1800
             },
             "mealsPerDay": 3,
@@ -21,31 +19,12 @@ export default {
               "isVegetarian": true,
               "isLactose": false
             }
-          }
-      },
-      substituteRecipe : {
-          "profile": {
-              "mealsPerDay": 3,
-              "recipesPerMeal": 2,
-              "restrictions": {
-                "isVegan": false,
-                "isVegetarian": true,
-                "isLactose": false
-              }
-          },
-          isFetching: false,
-          meal: -1,
-          recipe: -1,
-          recipePlan: {}
-        //   "profile": {
-        //     "nutrientsPerDay": {
-        //       "carbohydrates": 202,
-        //       "fat": 50,
-        //       "protein": 135,
-        //       "calories": 1800
-        //     },
-
-        //   },
-      }
+        },
+        substituteRecipe : {
+            isFetching: false,
+            meal: -1,
+            recipe: -1,
+            recipePlan: {}
+        }
     }
 }

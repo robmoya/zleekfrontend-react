@@ -5,3 +5,21 @@
 .edit-meal-form .rc-slider-handle {
   border-color: #FFAB00 !important;
 }
+
+.btn-create-meal {
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+}
+
+.meal-tag-list {
+    padding: 12px 15px;
+}
+
+.meal-tag-list button {
+    margin-right: 10px;
+}
+
+.edit-meal-form .form-control {
+    width: 115px !important;
+}

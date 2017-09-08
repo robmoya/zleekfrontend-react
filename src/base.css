@@ -5643,20 +5643,21 @@ svg {
     margin-right: 4px; }
 
 .meal-card-container {
-  margin-bottom: 12px; }
+  margin-bottom: 42px; }
 
 .meal-card-wrapper {
   border-radius: 4px;
-  border: 1px solid #E8E9ED; }
+  border: 1px solid #E8E9ED;
+  margin-bottom: 10px; }
   .meal-card-wrapper > div {
     position: relative;
-    padding: 4px 16px 4px 4px;
+    padding: 8px;
     border-bottom: 1px solid #E8E9ED; }
   .meal-card-wrapper > div:last-of-type {
     border-bottom: none; }
   .meal-card-wrapper .meal-cover {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 160px;
     background-color: #E8E9ED;
     border-radius: 4px;
     float: left;
@@ -5664,6 +5665,9 @@ svg {
     background-position: center; }
   .meal-card-wrapper .meal-description {
     width: calc(100% - 350px); }
+    .meal-card-wrapper .meal-description .recipe-cal {
+      position: absolute;
+      bottom: -6px; }
   .meal-card-wrapper a {
     color: #555555; }
   .meal-card-wrapper h4 span {
@@ -5680,8 +5684,9 @@ svg {
   .meal-card-wrapper .change-recipe {
     font-size: 14px;
     color: #979797;
-    float: right;
-    margin-top: 10px; }
+    position: absolute;
+    right: 16px;
+    top: 8px; }
   .meal-card-wrapper .meal-creator {
     color: #888888;
     font-size: 12px;
@@ -5695,9 +5700,7 @@ svg {
       left: 0;
       top: -14px; }
   .meal-card-wrapper button {
-    position: absolute;
-    right: 16px;
-    top: 16px; }
+    width: 124px; }
   .meal-card-wrapper .meal-tags {
     position: absolute;
     right: 16px;
@@ -5875,6 +5878,15 @@ svg {
   .text-center-xs {
     text-align: center; } }
 
+.text-decoration-none {
+  text-decoration: none !important; }
+
+.text-light-black {
+  color: #555555; }
+
+.text-lighter-black {
+  color: #979797; }
+
 .padding-none {
   padding: 0 !important; }
 
@@ -5929,6 +5941,12 @@ svg {
 
 .border-gray-hard {
   border: 1px solid #E8E9ED; }
+
+.border-gray-hard-top {
+  border-top: 1px solid #E8E9ED; }
+
+.border-gray-hard-left {
+  border-left: 1px solid #E8E9ED; }
 
 .cursor-pointer {
   cursor: pointer; }
