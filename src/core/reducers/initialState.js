@@ -7,9 +7,9 @@ export default {
         isChangeRecipeModalOpen: false,
         profile: {
             "nutrientsPerDay": {
-              "carbohydrates": 0.25,
-              "fat": 0.25,
-              "protein": 0.5,
+              "carbohydrates": 'average',
+              "fat": 'low',
+              "protein": 'high',
               "calories": 1800
             },
             "mealsPerDay": 3,

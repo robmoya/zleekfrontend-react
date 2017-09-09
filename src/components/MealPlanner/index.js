@@ -22,9 +22,7 @@ const MealPlanner = createReactClass({
         // let { calories, protein, fat, carbohydrates } = this.props.dayPlans[0].nutrients;
 
         let substitutePlan = {
-            "profile": {
-                ...initialState.mealPlanner.profile,
-            },
+            "profile": this.props.profile,
             "descriptor": this.props.descriptor,
             "marker": {
                 ...marker,

@@ -23,7 +23,8 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
                 isFetching: false,
                 errorInFetch: false,
                 descriptor: action.payload.descriptor,
-                dayPlans: [action.payload.dayPlans[0]]
+                dayPlans: [action.payload.dayPlans[0]],
+                profile: action.request.profile
             });
             break;
         }
@@ -36,27 +37,25 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
         //     break;
         // }
         case types.FETCH_SUBSTITUTE_RECIPE: {
-            console.log("fetch recipe");
-            // state = Object.assign({}, state, {
-            //     substituteRecipe: {
-            //         isFetching: true,
-            //         meal: action.payload.marker.meal,
-            //         recipe: action.payload.marker.recipe
-            //     }
-            // });
+            state = Object.assign({}, state, {
+                substituteRecipe: {
+                    isFetching: true,
+                    meal: action.payload.marker.meal,
+                    recipe: action.payload.marker.recipe
+                }
+            });
             break;
         }
         case types.RECEIVE_SUBSTITUTE_RECIPE: {
-            console.log("receive recipe");
-            // state = Object.assign({}, state, {
-            //     dayPlans: [action.payload.dayPlans],
-            //     substituteRecipe: {
-            //         isFetching: false,
-            //         meal: action.payload.marker.meal,
-            //         recipe: action.payload.marker.recipe,
-            //         recipePlan: action.payload.recipePlan
-            //     }
-            // });
+            state = Object.assign({}, state, {
+                dayPlans: [action.payload.dayPlans],
+                substituteRecipe: {
+                    isFetching: false,
+                    meal: action.payload.marker.meal,
+                    recipe: action.payload.marker.recipe,
+                    recipePlan: action.payload.recipePlan
+                }
+            });
             break;
         }
         case types.CHANGE_RECIPE_MODAL_OPEN:

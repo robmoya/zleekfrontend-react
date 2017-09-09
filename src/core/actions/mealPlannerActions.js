@@ -12,7 +12,7 @@ export function fetchDayPlan(payload) {
             if (data.err) {
                 dispatch(fetchDayPlanError(data.err));
             } else {
-                dispatch(receiveDayPlan(data));
+                dispatch(receiveDayPlan(data, payload));
             }
         }).catch((err) => {
             dispatch(fetchDayPlanError(err))
@@ -27,35 +27,38 @@ export function fetchDayPlanError(payload) {
     }
 }
 
-export function receiveDayPlan(payload) {
+export function receiveDayPlan(payload, request) {
     return {
         type: types.RECEIVE_DAY_PLAN,
-        payload: payload
+        payload: payload,
+        request: request
     }
 }
 
 export function substituteRecipe(payload) {
     payload.fn = 'substituteRecipe';
-    console.dir(payload);
 
     return function (dispatch) {
         dispatch({
-            type: types.FETCH_SUBSTITUTE_RECIPE
+            type: types.FETCH_SUBSTITUTE_RECIPE,
+            payload: {
+                marker: { ...payload.marker }
+            }
         });
         ZleekApi.getMealPlan(payload).then((data) => {
             if (data.err) {
                 dispatch(fetchDayPlanError(data.err));
             } else {
                 console.log(data);
-        //         // const recipePlan = data.dayPlans[payload.marker.day].mealPlans[payload.marker.meal].recipePlans[payload.marker.recipe];
-        //         // dispatch({
-        //         //     type: types.RECEIVE_SUBSTITUTE_RECIPE,
-        //         //     payload: {
-        //         //         marker: { ...payload.marker },
-        //         //         dayPlans: data.dayPlans[0],
-        //         //         recipePlan: recipePlan
-        //         //     }
-        //         // });
+                const recipePlan = data.dayPlans[payload.marker.day].mealPlans[payload.marker.meal].recipePlans[payload.marker.recipe];
+                dispatch({
+                    type: types.RECEIVE_SUBSTITUTE_RECIPE,
+                    payload: {
+                        marker: { ...payload.marker },
+                        dayPlans: data.dayPlans[0],
+                        recipePlan: recipePlan
+                    }
+                });
             }
         }).catch((err) => {
             dispatch(fetchDayPlanError(err))
