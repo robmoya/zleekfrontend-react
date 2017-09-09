@@ -1,9 +1,13 @@
-.edit-meal-form .rc-slider-track {
-  background-color: #FFAB00 !important;
-}
-
 .edit-meal-form .rc-slider-handle {
   border-color: #FFAB00 !important;
+}
+
+.edit-meal-form .rc-slider-track {
+  background-color: #e9e9e9;
+}
+
+.meal-slider-container {
+  margin-top: 30px;
 }
 
 .btn-create-meal {
@@ -22,4 +26,15 @@
 
 .edit-meal-form .form-control {
     width: 115px !important;
+}
+
+.slider-label {
+  display: flex;
+}
+
+.slider-label > span {
+  width: 33.33333%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
 }

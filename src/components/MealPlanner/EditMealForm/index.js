@@ -3,15 +3,21 @@ import { connect } from 'react-redux';
 import 'rc-slider/assets/index.css';
 import initialState from '../../../core/reducers/initialState';
 import * as actions from '../../../core/actions/mealPlannerActions';
-import AdvancedForm from './AdvancedForm';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
+import Slider from 'rc-slider';
 import './index.css';
 
 const EditMealForm = createReactClass({
     componentWillMount: function () {
         const profile = initialState.mealPlanner.profile;
-        this.setState({mealsPerDay:profile.mealsPerDay,calories:profile.nutrientsPerDay.calories});
+        this.setState({
+            mealsPerDay: profile.mealsPerDay,
+            calories: profile.nutrientsPerDay.calories,
+            carbs: '30%',
+            fat: '30%',
+            protein: '40%'
+        });
     },
     componentDidMount() {
     },
@@ -27,23 +33,43 @@ const EditMealForm = createReactClass({
     changeCalories: function (e) {
         this.setState({ calories: Number(e.target.value) });
     },
-
-
+    changeSlider: function (val) {
+        let first = val[0];
+        var last = val[1];
+        this.setState({
+            carbs: first + '%',
+            fat: (last - first) + '%',
+            protein: (100 - last) + '%'
+        });
+    },
+    parsePercentage: function (percentage) {
+        return parseFloat(percentage) / 100;
+    },
     onFormSubmit: function (e) {
         e.preventDefault();
         if (this.state.isAdvanced) {
-            // let buildPlan = this.changeSlider();
-            // buildPlan.profile.mealsPerDay = this.state.mealsPerDay;
-            // buildPlan.profile.nutrientsPerDay.calories = this.state.calories;
-            // this.props.buildMealPlan(buildPlan);
-            console.log("test advanced");
+            const buildPlan = {
+                numberOfDays: 1,
+                profile: {
+                    nutrientsPerDay: {
+                        carbohydrates: this.parsePercentage(this.state.carbs),
+                        fat: this.parsePercentage(this.state.fat),
+                        protein: this.parsePercentage(this.state.protein),
+                        calories: this.state.calories
+                    },
+                    mealsPerDay: this.state.mealsPerDay,
+                    recipesPerMeal: initialState.mealPlanner.profile.recipesPerMeal,
+                    restrictions: initialState.mealPlanner.profile.restrictions
+                }
+            };
+            this.props.buildMealPlan(buildPlan);
         } else {
             this.handleBasicForm();
         }
 
     },
     handleBasicForm: function () {
-        let buildPlan = {profile:initialState.mealPlanner.profile};
+        let buildPlan = { profile: initialState.mealPlanner.profile };
         buildPlan.numberOfDays = 1;
         buildPlan.profile.mealsPerDay = this.state.mealsPerDay;
         buildPlan.profile.nutrientsPerDay.calories = this.state.calories;
@@ -51,6 +77,7 @@ const EditMealForm = createReactClass({
         this.props.buildMealPlan(buildPlan);
     },
     render: function () {
+        const Range = Slider.Range;
         let { isAdvanced } = this.state;
         let renderSettingsTrigger = () => {
             if (isAdvanced) {
@@ -62,32 +89,27 @@ const EditMealForm = createReactClass({
         let renderSettings = () => {
             if (isAdvanced) {
                 return (
-                    <AdvancedForm/>
+                    <div className="meal-slider-container">
+                        <Range allowCross={false} step={1} min={0} max={100} defaultValue={[30, 60]} onChange={this.changeSlider} />
+                        <p className="slider-label">
+                            <span>Carbs
+                            <br />
+                                <i>{this.state.carbs}</i>
+                            </span>
+                            <span>Fat
+                            <br />
+                                <i>{this.state.fat}</i>
+                            </span>
+                            <span className="margin-right-none">Protein
+                            <br />
+                                <i>{this.state.protein}</i>
+                            </span>
+                        </p>
+                    </div>
                 )
             } else {
                 return (
-                    <div>
-                        <div className="form-inline">
-                            <div className="form-group margin-right-xl">
-                                <label className="control-label">Meals Calorie/Day:</label>
-                                <input type="text" className="form-control margin-left-sm" defaultValue={this.state.calories} onKeyUp={this.changeCalories} />
-                            </div>
-                            <div className="form-group margin-right-xl">
-                                <label className="control-label">I would like to eat:</label>
-                                <select className="form-control margin-left-sm" defaultValue={this.state.mealsPerDay} onChange={this.changeMealsPerDay}>
-                                    <option value="1">1 meal</option>
-                                    <option value="2">2 meals</option>
-                                    <option value="3">3 meals</option>
-                                    <option value="4">4 meals</option>
-                                    <option value="5">5 meals</option>
-                                    <option value="6">6 meals</option>
-                                    <option value="7">7 meals</option>
-                                    <option value="8">8 meals</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="clearfix"></div>
-                    </div>
+                    <div />
                 )
             }
         }
@@ -106,6 +128,28 @@ const EditMealForm = createReactClass({
                     </div>
                     <div className="form-group">
                         <div className="col-lg-9">
+                            <div>
+                                <div className="form-inline">
+                                    <div className="form-group margin-right-xl">
+                                        <label className="control-label">Meals Calorie/Day:</label>
+                                        <input type="text" className="form-control margin-left-sm" defaultValue={this.state.calories} onKeyUp={this.changeCalories} />
+                                    </div>
+                                    <div className="form-group margin-right-xl">
+                                        <label className="control-label">I would like to eat:</label>
+                                        <select className="form-control margin-left-sm" defaultValue={this.state.mealsPerDay} onChange={this.changeMealsPerDay}>
+                                            <option value="1">1 meal</option>
+                                            <option value="2">2 meals</option>
+                                            <option value="3">3 meals</option>
+                                            <option value="4">4 meals</option>
+                                            <option value="5">5 meals</option>
+                                            <option value="6">6 meals</option>
+                                            <option value="7">7 meals</option>
+                                            <option value="8">8 meals</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="clearfix"></div>
+                            </div>
                             {renderSettings()}
                         </div>
                         <div className="col-lg-3">
