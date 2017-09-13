@@ -1,12 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import createReactClass from 'create-react-class'
 import PropTypes from 'prop-types';
-import { openChangeRecipeModal } from '../../../core/actions/changeRecipeActions';
-import ChangeRecipe from './ChangeRecipe'
+import ChangeRecipe from './ChangeRecipe';
 
 const Recipe = createReactClass({
+    componentWillMount: function () {
+        this.setState({
+            isSimilarOptionsModalOpen: false
+        });
+    },
+    openSimilarOptionsModal: function () {
+        this.setState({isSimilarOptionsModalOpen: true});
+    },
+    closeSimilarOptionsModal: function () {
+        this.setState({isSimilarOptionsModalOpen: false});
+    },
     changeRecipe: function (e) {
         e.preventDefault();
         let marker = {
@@ -14,16 +23,13 @@ const Recipe = createReactClass({
         }
         this.props.onHandleRecipeChange(marker);
     },
-    openChangeRecipeModal: function () {
-        this.props.openChangeRecipeModal();
-    },
     getRandom: function (min, max) {
         return Math.random() * (max - min) + min;
     },
     render: function () {
         let recipe = this.props.recipe;
 
-        const { mealMarkerId, recipeMarkerId, substituteRecipe, isChangeRecipeModalOpen } = this.props;
+        const { mealMarkerId, recipeMarkerId, substituteRecipe } = this.props;
 
         if (mealMarkerId === substituteRecipe.meal && recipeMarkerId === substituteRecipe.recipe && !substituteRecipe.isFetching) {
             recipe = substituteRecipe.recipePlan;
@@ -60,8 +66,7 @@ const Recipe = createReactClass({
         return (
             <div className="meal-card-wrapper">
                 <div>
-                    <ChangeRecipe modalIsOpen={isChangeRecipeModalOpen} />
-
+                    {this.state.isSimilarOptionsModalOpen && <ChangeRecipe modalIsOpen={true} mealMarkerId={mealMarkerId} recipeMarkerId={recipeMarkerId} afterCloseModalFuc={this.closeSimilarOptionsModal} />}
                     <div className="bg-size-cover meal-cover" style={{ backgroundImage: `url(${img})` }}>
                     </div>
                     <div className="pull-left margin-left-sm meal-description">
@@ -80,7 +85,7 @@ const Recipe = createReactClass({
                     </div>
 
                     <div className="change-recipe">
-                        <button className="btn btn-primary" onClick={this.openChangeRecipeModal}>Similar Options</button>
+                        <button className="btn btn-primary" onClick={this.openSimilarOptionsModal}>Similar Options</button>
                         <br />
                         <button className="btn btn-black-lighter-transparent margin-top-sm" onClick={this.changeRecipe}>
                             {isChangingRecipe ?
@@ -97,32 +102,16 @@ const Recipe = createReactClass({
 })
 
 Recipe.propTypes = {
-    isChangeRecipeModalOpen: PropTypes.bool.isRequired,
     recipe: PropTypes.shape({
         recipeId: PropTypes.string.isRequired,
-        ingredients: PropTypes.array.isRequired,
+        ingredients: PropTypes.array,
         nutrients: PropTypes.object.isRequired,
         // name: PropTypes.string.isRequired,
-        directions: PropTypes.array.isRequired
+        directions: PropTypes.array
     }).isRequired,
     recipeMarkerId: PropTypes.number.isRequired,
     mealMarkerId: PropTypes.number.isRequired,
     substituteRecipe: PropTypes.object.isRequired
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isChangeRecipeModalOpen: state.mealPlanner.isChangeRecipeModalOpen
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        openChangeRecipeModal: () => {
-            dispatch(openChangeRecipeModal());
-        }
-    };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
+export default Recipe;

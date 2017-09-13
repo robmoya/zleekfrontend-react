@@ -11,7 +11,7 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
             break;
         }
         case types.FETCH_DAY_PLAN_ERROR: {
-            state = Object.assign({},state, {
+            state = Object.assign({}, state, {
                 isFetching: false,
                 errorInFetch: true,
                 errorMessage: action.payload
@@ -36,6 +36,15 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
         //     }
         //     break;
         // }
+        case types.SUBSTITUTE_RECIPE: {
+            const newDayPlans = Object.assign({}, state.dayPlans, {});
+            const { recipePlan, marker } = action.payload;
+            newDayPlans[marker.day].mealPlans[marker.meal].recipePlans[marker.recipe] = recipePlan;
+            state = Object.assign({}, state, {
+                dayPlans: newDayPlans
+            });
+            break;
+        }
         case types.FETCH_SUBSTITUTE_RECIPE: {
             state = Object.assign({}, state, {
                 substituteRecipe: {
@@ -58,6 +67,25 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
             });
             break;
         }
+        case types.FETCH_SUBSTITUTE_RECIPEOPTIONS: {
+            state = Object.assign({}, state, {
+                substituteRecipeOptions: {
+                    isFetching: true,
+                    recipePlans: []
+                }
+            });
+            break;
+        }
+        case types.RECEIVE_SUBSTITUTE_RECIPEOPTIONS: {
+            state = Object.assign({}, state, {
+                substituteRecipeOptions: {
+                    isFetching: false,
+                    recipePlans: action.payload.recipePlans
+                }
+            });
+            break;
+        }
+
         case types.CHANGE_RECIPE_MODAL_OPEN:
             return Object.assign({}, state, { isChangeRecipeModalOpen: true });
 
