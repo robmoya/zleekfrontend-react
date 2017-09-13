@@ -49,7 +49,6 @@ export function substituteRecipe(payload) {
             if (data.err) {
                 dispatch(fetchDayPlanError(data.err));
             } else {
-                console.log(data);
                 const recipePlan = data.dayPlans[payload.marker.day].mealPlans[payload.marker.meal].recipePlans[payload.marker.recipe];
                 dispatch({
                     type: types.RECEIVE_SUBSTITUTE_RECIPE,
@@ -66,9 +65,36 @@ export function substituteRecipe(payload) {
     }
 }
 
-export function replaceRecipe(payload) {
+export function replaceRecipe(recipePlan, marker) {
     return {
         type: types.SUBSTITUTE_RECIPE,
-        payload: payload
+        payload: {
+            recipePlan, marker
+        }
+    }
+
+}
+
+export function substituteRecipeOptions(payload) {
+    payload.fn = 'substituteRecipeOptions';
+
+    return function (dispatch) {
+        dispatch({
+            type: types.FETCH_SUBSTITUTE_RECIPEOPTIONS
+        });
+        ZleekApi.getMealPlan(payload).then((data) => {
+            if (data.err) {
+                dispatch(fetchDayPlanError(data.err));
+            } else {
+                dispatch({
+                    type: types.RECEIVE_SUBSTITUTE_RECIPEOPTIONS,
+                    payload: {
+                        recipePlans: data
+                    }
+                });
+            }
+        }).catch((err) => {
+            dispatch(fetchDayPlanError(err))
+        });
     }
 }

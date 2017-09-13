@@ -33,7 +33,7 @@
       text-align: center;
       border: none;
     }
-    & + div {
+    &+div {
       font-size: 10px;
       img {
         width: 20px;
@@ -58,6 +58,24 @@
     color: $black-lighter;
     margin: 16px 0;
   }
+  .meal-card-loading {
+    width: 450px;
+    height: 338px;
+    position: relative;
+    span {
+      position: absolute;
+      height: 40px;
+      width: 50px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      line-height: 30px;
+      font-size: 30px;
+    }
+  }
   .meal-card-for-change {
     display: flex;
     width: 450px;
@@ -66,6 +84,7 @@
     padding: 5px;
     position: relative;
     margin-bottom: 16px;
+    cursor: pointer;
     .meal-img {
       width: 90px;
       height: 90px;
@@ -81,7 +100,7 @@
       color: $black-light;
       margin-bottom: 6px;
       width: 200px;
-      & + p {
+      &+p {
         font-size: 10px;
         color: $black-lighter;
       }
@@ -90,7 +109,6 @@
       position: absolute;
       bottom: 0;
       font-size: 12px;
-      padding-left: 32px;
       img {
         width: 26px;
         height: 26px;
@@ -126,7 +144,8 @@
       }
     }
   }
-  .rc-slider-rail, .rc-slider-track {
+  .rc-slider-rail,
+  .rc-slider-track {
     background-color: $brand-primary;
   }
   .rc-slider-handle {
@@ -144,7 +163,7 @@
     overflow: auto;
     padding: 0;
     border: none !important;
-    :first-child {
+     :first-child {
       margin-top: 0;
     }
   }

@@ -6296,6 +6296,22 @@ svg {
   .change-meal-modal h6 {
     color: #979797;
     margin: 16px 0; }
+  .change-meal-modal .meal-card-loading {
+    width: 450px;
+    height: 338px;
+    position: relative; }
+    .change-meal-modal .meal-card-loading span {
+      position: absolute;
+      height: 40px;
+      width: 50px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      line-height: 30px;
+      font-size: 30px; }
   .change-meal-modal .meal-card-for-change {
     display: flex;
     width: 450px;
@@ -6303,7 +6319,8 @@ svg {
     border-radius: 4px;
     padding: 5px;
     position: relative;
-    margin-bottom: 16px; }
+    margin-bottom: 16px;
+    cursor: pointer; }
     .change-meal-modal .meal-card-for-change .meal-img {
       width: 90px;
       height: 90px;
@@ -6324,8 +6341,7 @@ svg {
     .change-meal-modal .meal-card-for-change .meal-creator-info {
       position: absolute;
       bottom: 0;
-      font-size: 12px;
-      padding-left: 32px; }
+      font-size: 12px; }
       .change-meal-modal .meal-card-for-change .meal-creator-info img {
         width: 26px;
         height: 26px;
@@ -6354,7 +6370,8 @@ svg {
       @media (max-width: 320px) {
         .change-meal-modal .slider-label span {
           margin: 0 12%; } }
-  .change-meal-modal .rc-slider-rail, .change-meal-modal .rc-slider-track {
+  .change-meal-modal .rc-slider-rail,
+  .change-meal-modal .rc-slider-track {
     background-color: #FFAB00; }
   .change-meal-modal .rc-slider-handle {
     border-color: #FFAB00; }
