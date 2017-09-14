@@ -43,12 +43,19 @@ const ChangeRecipe = createReactClass({
     selectRecipe: function (i) {
         this.closeModal();
         const recipePlan = this.props.mealPlanner.substituteRecipeOptions.recipePlans[i];
+        const recipeDescriptor = recipePlan.recipeDescriptor;
         const marker = {
             day: 0,
             meal: this.props.mealMarkerId,
             recipe: this.props.recipeMarkerId
         };
-        this.props.replaceRecipe(recipePlan, marker);
+        const buildPlan = {
+            profile: this.props.mealPlanner.profile,
+            descriptor: this.props.mealPlanner.descriptor,
+            recipeDescriptor,
+            marker
+        }
+        this.props.replaceRecipe(buildPlan);
     },
     render: function () {
         const { isFetching, recipePlans } = this.props.mealPlanner.substituteRecipeOptions;
@@ -81,7 +88,7 @@ const ChangeRecipe = createReactClass({
                         <p className="change-meal-title">Change your meal
                             <i className="fa fa-random margin-left-md" onClick={this.substituteRecipeOptions}></i>
                         </p>
-                        <div className="hidden-xs">
+                        <div>
                             {isFetching &&
                                 <div className="meal-card-loading">
                                     <span>
@@ -89,42 +96,6 @@ const ChangeRecipe = createReactClass({
                                     </span>
                                 </div>}
                             {recipePlanCards}
-                        </div>
-                        <div className="meal-card-wrapper-xs visible-xs">
-                            <div className="meal-card-list">
-                                <div>
-                                    <div className="bg-size-cover meal-cover-xs" style={{ backgroundImage: 'url(http://op9ls46e5.bkt.gdipper.com/meal_plan1.jpg)' }}>
-                                        <div>
-                                            <img alt="" src="https://res.cloudinary.com/turquoise-software/image/upload/c_fill,g_face,h_200,w_200/v1471623391/profile-katyperry_lezdwq.jpg" />
-                                        </div>
-                                    </div>
-                                    <div className="meal-tags-xs">
-                                        <div>
-                                            <i className="icon-heart margin-right-lg"></i>
-                                            <i className="icon-carrot margin-right-lg"></i>
-                                        </div>
-                                        <h6 className="text-center">Created by
-                                            <span className="margin-left-xs">
-                                                <b>Lazar A</b>
-                                            </span>
-                                        </h6>
-
-                                    </div>
-                                    <div className="text-center padding-left-right">
-                                        <hr />
-                                        <h4 className="margin-bottom-xs">Omelette</h4>
-                                        <h6 className="margin-top-xs">
-                                            <i>146 Reviews</i>
-                                        </h6>
-
-                                    </div>
-                                    <div className="btn-order-wrapper">
-                                        <button className="btn btn-gray-light-transparent btn-sm btn-block">
-                                            <b>Change</b>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </Modal>
@@ -153,8 +124,8 @@ const mapDispatchToProps = (dispatch) => {
         substituteRecipeOptions: function (mealPlan) {
             dispatch(substituteRecipeOptions(mealPlan));
         },
-        replaceRecipe: function (recipePlan, marker) {
-            dispatch(replaceRecipe(recipePlan, marker));
+        replaceRecipe: function (buildPlan) {
+            dispatch(replaceRecipe(buildPlan));
         }
     };
 };
