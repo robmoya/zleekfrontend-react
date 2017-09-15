@@ -3,7 +3,6 @@ import ZleekApi from '../../api/zleekApi';
 
 export function fetchDayPlan(payload) {
     payload.fn = 'buildPlan';
-    console.dir(payload);
     return function (dispatch) {
         dispatch({
             type: types.FETCH_DAY_PLAN
@@ -100,6 +99,48 @@ export function substituteRecipeOptions(payload) {
                         recipePlans: data
                     }
                 });
+            }
+        }).catch((err) => {
+            dispatch(fetchDayPlanError(err))
+        });
+    }
+}
+
+export function substituteIngredientOptions(payload) {
+    payload.fn = 'substituteIngredientOptions';
+
+    return function (dispatch) {
+        dispatch({
+            type: types.FETCH_SUBSTITUTE_INGREDIENTOPTIONS
+        });
+        ZleekApi.getMealPlan(payload).then((data) => {
+            if (data.err) {
+                dispatch(fetchDayPlanError(data.err));
+            } else {
+                dispatch({
+                    type: types.RECEIVE_SUBSTITUTE_INGREDIENTOPTIONS,
+                    payload: {
+                        ingredients: data
+                    }
+                });
+            }
+        }).catch((err) => {
+            dispatch(fetchDayPlanError(err))
+        });
+    }
+}
+
+export function replaceIngredient(payload) {
+    payload.fn = 'substituteIngredientFromOptions';
+    return function (dispatch) {
+        dispatch({
+            type: types.FETCH_DAY_PLAN
+        });
+        ZleekApi.getMealPlan(payload).then((data) => {
+            if (data.err) {
+                dispatch(fetchDayPlanError(data.err));
+            } else {
+                dispatch(receiveDayPlan(data, payload));
             }
         }).catch((err) => {
             dispatch(fetchDayPlanError(err))

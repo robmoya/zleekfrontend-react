@@ -3,23 +3,8 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import { substituteRecipeOptions, replaceRecipe } from '../../../../core/actions/mealPlannerActions'
-
-const customStyles = {
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)'
-    },
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        padding: '0',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        overflow: 'initial'
-    }
-};
+import { CustomModalStyles } from '../../../../core/config';
+import { substituteRecipeOptions, replaceRecipe } from '../../../../core/actions/mealPlannerActions';
 
 const ChangeRecipe = createReactClass({
     afterOpenModal: function () {
@@ -80,7 +65,7 @@ const ChangeRecipe = createReactClass({
                     isOpen={this.props.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
-                    style={customStyles}
+                    style={CustomModalStyles}
                     className="change-meal-modal-wrapper"
                     contentLabel="">
                     <div className="change-meal-modal">

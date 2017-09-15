@@ -86,6 +86,25 @@ const mealPlanReducer = (state = initialState.mealPlanner, action) => {
             break;
         }
 
+        case types.FETCH_SUBSTITUTE_INGREDIENTOPTIONS: {
+            state = Object.assign({}, state, {
+                substituteIngredientOptions: {
+                    isFetching: true,
+                    ingredients: []
+                }
+            });
+            break;
+        }
+        case types.RECEIVE_SUBSTITUTE_INGREDIENTOPTIONS: {
+            state = Object.assign({}, state, {
+                substituteIngredientOptions: {
+                    isFetching: false,
+                    ingredients: action.payload.ingredients
+                }
+            });
+            break;
+        }
+
         case types.CHANGE_RECIPE_MODAL_OPEN:
             return Object.assign({}, state, { isChangeRecipeModalOpen: true });
 

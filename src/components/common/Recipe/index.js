@@ -72,7 +72,7 @@ const Recipe = createReactClass({
                     <div className="pull-left margin-left-sm meal-description">
                         <Link to={{
                             pathname: `/recipes/${recipeId}`,
-                            state: { recipe: recipe }
+                            state: { recipe: recipe, mealMarkerId: mealMarkerId, recipeMarkerId: recipeMarkerId }
                         }} className="recipe-bg clickable h4">
                             {name}
                         </Link>

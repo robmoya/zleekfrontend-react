@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../core/actions/mealPlannerActions';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
-import initialState from '../../core/reducers/initialState';
-
 import Meal from '../common/Meal';
 import EditMealForm from './EditMealForm';
 import LoadingIndicator from '../common/LoadingIndicator';
@@ -12,11 +10,10 @@ import LoadingIndicator from '../common/LoadingIndicator';
 
 const MealPlanner = createReactClass({
     componentWillMount: function () {
-        let buildPlan = {
-            "numberOfDays": 1,
-            "profile": initialState.mealPlanner.profile
+        const profile = this.props.mealPlanner.profile;
+        if (!this.props.dayPlans) {
+            this.props.onMount({ numberOfDays: 1, profile });
         }
-        this.props.onMount(buildPlan);
     },
     handleRecipeChange: function (marker) {
         // let { calories, protein, fat, carbohydrates } = this.props.dayPlans[0].nutrients;
@@ -142,6 +139,7 @@ MealPlanner.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
+        mealPlanner: state.mealPlanner,
         isFetching: state.mealPlanner.isFetching,
         errorInFetch: state.mealPlanner.errorInFetch,
         errorMessage: state.mealPlanner.errorMessage,

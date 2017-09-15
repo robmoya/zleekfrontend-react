@@ -1,0 +1,57 @@
+.change-ingredient-modal-wrapper {
+    background-color: #fff;
+}
+
+.change-ingredient-modal {
+    padding: 20px;
+    position: relative;
+}
+
+.change-ingredient-modal > div {
+    max-height: 70vh;
+    overflow: auto;
+}
+
+.change-ingredient-modal .fa-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 14px;
+    color: #CCC;
+}
+
+.change-ingredient-modal .change-meal-title {
+    font-size: 16px;
+    padding-bottom: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #E8E9ED;
+}
+
+.ingredient-card-for-change {
+    width: 450px;
+    padding: 12px;
+    border: 1px solid #E8E9ED;
+    border-radius: 4px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.change-ingredient-loading {
+    width: 450px;
+    height: 338px;
+    position: relative;
+}
+
+.change-ingredient-loading span {
+    position: absolute;
+    height: 40px;
+    width: 50px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 30px;
+    font-size: 30px;
+}

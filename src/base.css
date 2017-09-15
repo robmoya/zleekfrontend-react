@@ -6258,10 +6258,7 @@ svg {
     width: calc(100% - 32px); } }
 
 .change-meal-modal-wrapper {
-  position: absolute;
-  background-color: #fff;
-  border-radius: 4px;
-  outline: none; }
+  background-color: #fff; }
 
 .change-meal-modal {
   padding: 20px;

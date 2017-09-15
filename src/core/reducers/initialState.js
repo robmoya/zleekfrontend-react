@@ -29,6 +29,10 @@ export default {
         substituteRecipeOptions: {
             isFetching: false,
             recipePlans: []
+        },
+        substituteIngredientOptions: {
+            isFetching: false,
+            ingredients: []
         }
     }
 }
